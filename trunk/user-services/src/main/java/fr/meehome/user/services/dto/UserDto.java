@@ -1,4 +1,4 @@
-package fr.meehome.musculation.services.dto;
+package fr.meehome.user.services.dto;
 
 public class UserDto {
 

@@ -1,4 +1,4 @@
-package fr.meehome.musculation.dao.impl;
+package fr.meehome.user.dao.impl;
 
 import java.io.Serializable;
 

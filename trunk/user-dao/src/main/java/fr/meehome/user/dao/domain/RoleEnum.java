@@ -1,4 +1,4 @@
-package fr.meehome.musculation.dao.domain;
+package fr.meehome.user.dao.domain;
 
 public enum RoleEnum {
 	ADMINISTRATEUR(1, "adminsitrateur"), VISITEUR(2, "visiteur");

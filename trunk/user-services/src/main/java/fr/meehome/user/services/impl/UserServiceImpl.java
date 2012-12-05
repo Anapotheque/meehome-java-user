@@ -1,4 +1,4 @@
-package fr.meehome.musculation.services.impl;
+package fr.meehome.user.services.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import fr.meehome.musculation.dao.IUserDao;
-import fr.meehome.musculation.dao.domain.User;
-import fr.meehome.musculation.services.IUserService;
-import fr.meehome.musculation.services.dto.UserDto;
+import fr.meehome.user.dao.IUserDao;
+import fr.meehome.user.dao.domain.User;
+import fr.meehome.user.services.IUserService;
+import fr.meehome.user.services.dto.UserDto;
 
 @Service
 public class UserServiceImpl implements IUserService {
