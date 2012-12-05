@@ -1,4 +1,4 @@
-package fr.meehome.musculation.dao.domain;
+package fr.meehome.user.dao.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,8 +1,8 @@
-package fr.meehome.musculation.services;
+package fr.meehome.user.services;
 
 import java.util.List;
 
-import fr.meehome.musculation.services.dto.UserDto;
+import fr.meehome.user.services.dto.UserDto;
 
 public interface IUserService {
 
