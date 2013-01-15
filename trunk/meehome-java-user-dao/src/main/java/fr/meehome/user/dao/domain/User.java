@@ -11,28 +11,28 @@ import javax.persistence.Table;
 import org.hibernate.Hibernate;
 
 @Entity
-@Table(name = "MUSCULATION_USER")
+@Table(name = "USERS")
 public class User {
 
     @Id
     @GeneratedValue
-    @Column(name = "MUSCULATION_USER_ID")
+    @Column(name = "USER_ID")
     private int id;
 
-    @Column(name = "MUSCULATION_USER_LOGIN")
+    @Column(name = "USER_LOGIN")
     private String login;
 
-    @Column(name = "MUSCULATION_USER_PASSWORD")
+    @Column(name = "USER_PASSWORD")
     private String password;
 
-    @Column(name = "MUSCULATION_USER_NOM")
+    @Column(name = "USER_NOM")
     private String nom;
 
-    @Column(name = "MUSCULATION_USER_PRENOM")
+    @Column(name = "USER_PRENOM")
     private String prenom;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "MUSCULATION_USER_ROLE")
+    @Column(name = "USER_ROLE")
     private RoleEnum roleEnum;
 
     @Override
