@@ -13,7 +13,7 @@ import fr.meehome.user.dao.domain.User;
 import fr.meehome.user.services.IUserService;
 import fr.meehome.user.services.dto.UserDto;
 
-@Service
+@Service(value = "IUserService")
 public class UserServiceImpl implements IUserService {
 
     @Autowired

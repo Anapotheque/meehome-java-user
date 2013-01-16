@@ -11,7 +11,8 @@
 	<modules>
 		<module>meehome-java-user-dao</module>
 		<module>meehome-java-user-services</module>
-	</modules>
+    <module>meehome-java-user-front</module>
+  </modules>
 	
 	<build>
 	
