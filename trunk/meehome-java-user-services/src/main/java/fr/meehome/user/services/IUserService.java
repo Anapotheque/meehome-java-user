@@ -8,9 +8,13 @@ public interface IUserService {
 
     public List<UserDto> getAll();
 
-    public UserDto isAuthorized(String login, String password);
+    public List<UserDto> getUserByLogin(String login);
 
-    public void delete(UserDto user);
+    public boolean isAuthorized(String login, String password);
 
-    public void saveOrUpdate(UserDto user);
+    public void delete(List<UserDto> listUser);
+
+    public void add(List<UserDto> listUser);
+
+    public void update(List<UserDto> listUser);
 }

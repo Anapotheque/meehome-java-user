@@ -23,10 +23,8 @@ public class UserServiceImpl implements IUserService {
     @Qualifier("dozerBeanMapper")
     private Mapper Mapper;
 
-    @Override
-    public List<UserDto> getAll() {
+    private List<UserDto> populateUserDto(List<User> listUser) {
         List<UserDto> listUserDto = new ArrayList<UserDto>();
-        List<User> listUser = userDao.findAll();
         for (User user : listUser) {
             listUserDto.add(Mapper.map(user, UserDto.class));
         }
@@ -34,20 +32,33 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public UserDto isAuthorized(String login, String password) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<UserDto> getAll() {
+        return populateUserDto(userDao.findAll());
     }
 
     @Override
-    public void delete(UserDto user) {
-        // TODO Auto-generated method stub
-
+    public List<UserDto> getUserByLogin(String login) {
+        return populateUserDto(userDao.findByLogin(login));
     }
 
     @Override
-    public void saveOrUpdate(UserDto user) {
-        // TODO Auto-generated method stub
+    public boolean isAuthorized(String login, String password) {
+        List<UserDto> listUserDto = populateUserDto(userDao.findByLoginAndPwd(login, password));
+        return listUserDto != null && listUserDto.size() == 1 ? true : false;
+    }
 
+    @Override
+    public void delete(List<UserDto> listUser) {
+        // TODO Auto-generated method stub
+    }
+
+    @Override
+    public void add(List<UserDto> listUser) {
+        // TODO Auto-generated method stub
+    }
+
+    @Override
+    public void update(List<UserDto> listUser) {
+        // TODO Auto-generated method stub
     }
 }

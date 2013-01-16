@@ -14,6 +14,11 @@ import fr.meehome.user.dao.domain.User;
 public class UserDao extends SessionFactoryDao<User, Long> implements IUserDao {
 
     @Override
+    public List<User> findByLoginAndPwd(String login, String password) {
+        return search(new Search().addFilterEqual("login", login).addFilterEqual("pwd", password));
+    }
+
+    @Override
     public List<User> findByLogin(String login) {
         return search(new Search().addFilterEqual("login", login));
     }
