@@ -7,6 +7,7 @@ import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.meehome.user.dao.IUserDao;
 import fr.meehome.user.dao.domain.User;
@@ -14,6 +15,7 @@ import fr.meehome.user.services.IUserService;
 import fr.meehome.user.services.dto.UserDto;
 
 @Service(value = "IUserService")
+@Transactional
 public class UserServiceImpl implements IUserService {
 
     @Autowired
@@ -48,17 +50,30 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void delete(List<UserDto> listUser) {
-        // TODO Auto-generated method stub
+    public boolean delete(List<UserDto> listUser) {
+        boolean result = false;
+        for (UserDto userDto : listUser) {
+            List<User> listUserFind = userDao.findByLogin(userDto.getLogin());
+            userDao.remove(listUserFind.get(0));
+        }
+        return result;
     }
 
     @Override
-    public void add(List<UserDto> listUser) {
-        // TODO Auto-generated method stub
+    public boolean add(List<UserDto> listUser) {
+        boolean result = false;
+        for (UserDto userDto : listUser) {
+            userDao.save(Mapper.map(userDto, User.class));
+        }
+        return result;
     }
 
     @Override
-    public void update(List<UserDto> listUser) {
-        // TODO Auto-generated method stub
+    public boolean update(List<UserDto> listUser) {
+        boolean result = false;
+        for (UserDto userDto : listUser) {
+            userDao.save(Mapper.map(userDto, User.class));
+        }
+        return result;
     }
 }
