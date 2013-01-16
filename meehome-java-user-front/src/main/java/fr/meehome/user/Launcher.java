@@ -3,9 +3,9 @@ package fr.meehome.user;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -18,8 +18,7 @@ public class Launcher {
 
     public static ApplicationContext applicationContext = new ClassPathXmlApplicationContext("fr/meehome/user/services/applicationContext.xml");
 
-    @Autowired
-    public IUserService userService;
+    public static IUserService userService = (IUserService ) applicationContext.getBean("IUserService");
 
     public static void main(String[] args) throws IOException {
         boolean run = true;
@@ -34,15 +33,12 @@ public class Launcher {
                     showListeUser();
                     break;
                 case "2":
-                    showListeUser();
+                    addUser();
                     break;
                 case "3":
-                    showListeUser();
+                    deleteUser();
                     break;
                 case "4":
-                    showListeUser();
-                    break;
-                case "5":
                     run = false;
                     break;
                 default:
@@ -56,9 +52,8 @@ public class Launcher {
         System.out.println("---------------------------------");
         System.out.println("1 - Liste des utilisateurs");
         System.out.println("2 - Ajouter un utilisateur");
-        System.out.println("3 - Modifier un utilisateur");
-        System.out.println("4 - Supprimer un utilisateur");
-        System.out.println("5 - Quitter");
+        System.out.println("3 - Supprimer un utilisateur");
+        System.out.println("4 - Quitter");
         System.out.println("---------------------------------");
         return bufferedReader.readLine();
     }
@@ -67,7 +62,6 @@ public class Launcher {
         System.out.println("---------------------------------");
         System.out.println("- Liste des utilisateurs        -");
         System.out.println("---------------------------------");
-        IUserService userService = (IUserService ) applicationContext.getBean("IUserService");
         List<UserDto> listUserDto = userService.getAll();
         if (listUserDto.isEmpty()) {
             System.out.println("liste vide...");
@@ -76,5 +70,31 @@ public class Launcher {
                 System.out.println(userDto.getLogin());
             }
         }
+    }
+
+    private static void addUser() throws IOException {
+        System.out.println("---------------------------------");
+        System.out.println("- Ajouter un utilisateur        -");
+        System.out.println("---------------------------------");
+        System.out.print(" login : ");
+        boolean success = userService.add(getLoginFromInput());
+        System.out.print(" Success : " + success);
+    }
+
+    private static void deleteUser() throws IOException {
+        System.out.println("---------------------------------");
+        System.out.println("- Supprimer un utilisateur      -");
+        System.out.println("---------------------------------");
+        System.out.print(" login : ");
+        boolean success = userService.delete(getLoginFromInput());
+        System.out.print(" Success : " + success);
+    }
+
+    private static List<UserDto> getLoginFromInput() throws IOException {
+        List<UserDto> listUserDto = new ArrayList<UserDto>();
+        UserDto userDto = new UserDto();
+        userDto.setLogin(bufferedReader.readLine());
+        listUserDto.add(userDto);
+        return listUserDto;
     }
 }
