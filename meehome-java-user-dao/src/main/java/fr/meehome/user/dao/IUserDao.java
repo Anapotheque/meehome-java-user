@@ -9,8 +9,10 @@ import fr.meehome.user.dao.domain.User;
 
 public interface IUserDao extends GenericDAO<User, Long> {
 
-	public List<User> findByLogin(String login);
+    public List<User> findByLoginAndPwd(String login, String password);
 
-	public List<User> findByRole(RoleEnum roleEnum);
+    public List<User> findByLogin(String login);
+
+    public List<User> findByRole(RoleEnum roleEnum);
 
 }
