@@ -11,8 +11,8 @@
 	<modules>
 		<module>meehome-java-user-dao</module>
 		<module>meehome-java-user-services</module>
-    <module>meehome-java-user-front</module>
-  </modules>
+		<module>meehome-java-user-front</module>
+	</modules>
 	
 	<build>
 	
@@ -32,14 +32,6 @@
 				<configuration>
 					<tagBase>https://meehome-java-user.googlecode.com/svn/tags</tagBase>
 					<goals>deploy</goals>
-				</configuration>
-			</plugin>
-			
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<configuration>
-					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -67,6 +59,10 @@
 	
 	<properties>
 		<wagon-svn.version>1.9</wagon-svn.version>
+		<spring.version>3.1.2.RELEASE</spring.version>
+		<slf4j.version>1.5.5</slf4j.version>
+		<log4j.version>1.2.17</log4j.version>
+		<hsqldb.version>1.8.0.10</hsqldb.version>
 	</properties>
 	
 </project>
