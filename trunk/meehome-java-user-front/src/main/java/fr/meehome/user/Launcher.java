@@ -14,13 +14,22 @@ import fr.meehome.user.services.dto.UserDto;
 
 public class Launcher {
 
-    public static BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    public static BufferedReader bufferedReader;
 
-    public static ApplicationContext applicationContext = new ClassPathXmlApplicationContext("fr/meehome/user/services/applicationContext.xml");
+    public static ApplicationContext applicationContext;
 
-    public static IUserService userService = (IUserService ) applicationContext.getBean("IUserService");
+    public static IUserService userService;
+
+    public static void init() {
+        bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        applicationContext = new ClassPathXmlApplicationContext("fr/meehome/user/services/applicationContext.xml");
+        userService = (IUserService ) applicationContext.getBean("IUserService");
+    }
 
     public static void main(String[] args) throws IOException {
+
+        init();
+
         boolean run = true;
 
         System.out.println("---------------------------------");
@@ -29,16 +38,16 @@ public class Launcher {
 
         while (run) {
             switch (showAccueil()) {
-                case "1":
+                case 1:
                     showListeUser();
                     break;
-                case "2":
+                case 2:
                     addUser();
                     break;
-                case "3":
+                case 3:
                     deleteUser();
                     break;
-                case "4":
+                case 4:
                     run = false;
                     break;
                 default:
@@ -46,16 +55,20 @@ public class Launcher {
                     break;
             }
         }
+
+        System.out.println("---------------------------------");
+        System.out.println("- Good bye                      -");
+        System.out.println("---------------------------------");
     }
 
-    private static String showAccueil() throws IOException {
+    private static int showAccueil() throws IOException {
         System.out.println("---------------------------------");
         System.out.println("1 - Liste des utilisateurs");
         System.out.println("2 - Ajouter un utilisateur");
         System.out.println("3 - Supprimer un utilisateur");
         System.out.println("4 - Quitter");
         System.out.println("---------------------------------");
-        return bufferedReader.readLine();
+        return Integer.parseInt(bufferedReader.readLine());
     }
 
     private static void showListeUser() {
