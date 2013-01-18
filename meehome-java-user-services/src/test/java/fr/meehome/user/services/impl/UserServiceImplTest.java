@@ -13,7 +13,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.util.ReflectionTestUtils;
 
@@ -23,7 +22,7 @@ import fr.meehome.user.services.IUserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/fr/meehome/user/services/applicationContext-test.xml" })
-public class UserServiceImplTest extends AbstractTransactionalJUnit4SpringContextTests {
+public class UserServiceImplTest {
 
     @Autowired
     private IUserService userService;
