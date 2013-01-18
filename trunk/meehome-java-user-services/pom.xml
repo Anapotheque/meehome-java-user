@@ -15,6 +15,7 @@
 	<name>meehome-java-user-services</name>
 	
 	<dependencies>
+	
 		<dependency>
 		  <groupId>fr.meehome.user</groupId>
 		  <artifactId>meehome-java-user-dao</artifactId>
