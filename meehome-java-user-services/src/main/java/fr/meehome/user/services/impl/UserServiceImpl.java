@@ -7,6 +7,7 @@ import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.meehome.user.dao.IUserDao;
@@ -15,7 +16,7 @@ import fr.meehome.user.services.IUserService;
 import fr.meehome.user.services.dto.UserDto;
 
 @Service(value = "IUserService")
-@Transactional
+@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 public class UserServiceImpl implements IUserService {
 
     @Autowired
