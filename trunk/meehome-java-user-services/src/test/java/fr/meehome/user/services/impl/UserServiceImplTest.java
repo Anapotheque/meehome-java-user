@@ -9,17 +9,19 @@ import java.util.List;
 import org.dozer.Mapper;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.test.util.ReflectionTestUtils;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import fr.meehome.user.dao.IUserDao;
 import fr.meehome.user.dao.domain.User;
-import fr.meehome.user.services.IUserService;
 
+@RunWith(MockitoJUnitRunner.class)
 public class UserServiceImplTest {
 
-    private IUserService userService = new UserServiceImpl();
+    @InjectMocks
+    private UserServiceImpl userService;
 
     @Mock
     private IUserDao userDaoMock;
@@ -29,10 +31,6 @@ public class UserServiceImplTest {
 
     @Before
     public void initMocks() {
-        MockitoAnnotations.initMocks(this);
-        ReflectionTestUtils.setField(userService, "userDao", userDaoMock, IUserDao.class);
-        ReflectionTestUtils.setField(userService, "mapper", mapperMock, Mapper.class);
-
         // gestion des mocks
         when(userDaoMock.findAll()).thenReturn(populate_users_dao_mock());
         when(userDaoMock.findByLoginAndPwd("test1", "pwd1")).thenReturn(populate_user_dao_mock());
