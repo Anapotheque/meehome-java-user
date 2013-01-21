@@ -7,6 +7,7 @@ import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.meehome.user.dao.IUserDao;
 import fr.meehome.user.dao.domain.User;
@@ -14,6 +15,7 @@ import fr.meehome.user.services.IUserService;
 import fr.meehome.user.services.dto.UserDto;
 
 @Service(value = "IUserService")
+@Transactional
 public class UserServiceImpl implements IUserService {
 
     @Autowired
@@ -21,12 +23,12 @@ public class UserServiceImpl implements IUserService {
 
     @Autowired
     @Qualifier("dozerBeanMapper")
-    private Mapper Mapper;
+    private Mapper mapper;
 
     private List<UserDto> populateUserDto(List<User> listUser) {
         List<UserDto> listUserDto = new ArrayList<UserDto>();
         for (User user : listUser) {
-            listUserDto.add(Mapper.map(user, UserDto.class));
+            listUserDto.add(mapper.map(user, UserDto.class));
         }
         return listUserDto;
     }
@@ -61,7 +63,7 @@ public class UserServiceImpl implements IUserService {
     public boolean add(List<UserDto> listUser) {
         boolean result = false;
         for (UserDto userDto : listUser) {
-            userDao.save(Mapper.map(userDto, User.class));
+            userDao.save(mapper.map(userDto, User.class));
         }
         return result;
     }
@@ -70,7 +72,7 @@ public class UserServiceImpl implements IUserService {
     public boolean update(List<UserDto> listUser) {
         boolean result = false;
         for (UserDto userDto : listUser) {
-            userDao.save(Mapper.map(userDto, User.class));
+            userDao.save(mapper.map(userDto, User.class));
         }
         return result;
     }

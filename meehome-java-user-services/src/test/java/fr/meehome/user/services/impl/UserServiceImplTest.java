@@ -6,34 +6,32 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.dozer.Mapper;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import fr.meehome.user.dao.IUserDao;
 import fr.meehome.user.dao.domain.User;
 import fr.meehome.user.services.IUserService;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/fr/meehome/user/services/applicationContext-test.xml" })
 public class UserServiceImplTest {
 
-    @Autowired
-    private IUserService userService;
+    private IUserService userService = new UserServiceImpl();
 
     @Mock
     private IUserDao userDaoMock;
+
+    @Mock
+    private Mapper mapperMock;
 
     @Before
     public void initMocks() {
         MockitoAnnotations.initMocks(this);
         ReflectionTestUtils.setField(userService, "userDao", userDaoMock, IUserDao.class);
+        ReflectionTestUtils.setField(userService, "mapper", mapperMock, Mapper.class);
 
         // gestion des mocks
         when(userDaoMock.findAll()).thenReturn(populate_users_dao_mock());
