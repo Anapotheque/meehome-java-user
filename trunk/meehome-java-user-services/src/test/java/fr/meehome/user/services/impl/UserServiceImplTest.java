@@ -30,8 +30,7 @@ public class UserServiceImplTest {
     private Mapper mapperMock;
 
     @Before
-    public void initMocks() {
-        // gestion des mocks
+    public void setup() {
         when(userDaoMock.findAll()).thenReturn(populate_users_dao_mock());
         when(userDaoMock.findByLoginAndPwd("test1", "pwd1")).thenReturn(populate_user_dao_mock());
         when(userDaoMock.findByLogin("test1")).thenReturn(populate_user_dao_mock());
