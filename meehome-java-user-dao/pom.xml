@@ -25,13 +25,6 @@
 		</plugins>
 	</build>
 	
-	<repositories>
-		<repository>
-		    <id>excilys-release</id>
-		    <url>http://repository.excilys.com/content/repositories/releases</url>
-		</repository>
-	</repositories>
-	
 	<dependencies>
 		
 		<dependency>
@@ -94,18 +87,6 @@
 			<version>${spring.version}</version>
 		</dependency>
 		
-		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-test</artifactId>
-		    <version>${spring.version}</version>
-		    <scope>test</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>com.excilys.ebi.spring-dbunit</groupId>
-			<artifactId>spring-dbunit-test</artifactId>
-			<version>1.1.12</version>
-		</dependency>
 		
 		<dependency>
 			<groupId>hsqldb</groupId>
@@ -118,6 +99,7 @@
 	        <artifactId>slf4j-api</artifactId>
 	        <version>${slf4j.version}</version>
 	    </dependency>
+	    
 	    <!-- concrete Log4J Implementation for SLF4J API-->
 	    <dependency>
 	        <groupId>org.slf4j</groupId>
@@ -130,7 +112,22 @@
 			<artifactId>log4j</artifactId>
 			<version>${log4j.version}</version>
 		</dependency>
-
+		
+		<!-- Dependances liées aux test unitaires -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-test</artifactId>
+		    <version>${spring.version}</version>
+		    <scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.excilys.ebi.spring-dbunit</groupId>
+			<artifactId>spring-dbunit-test</artifactId>
+			<version>1.1.12</version>
+			<scope>test</scope>
+		</dependency>
+		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
