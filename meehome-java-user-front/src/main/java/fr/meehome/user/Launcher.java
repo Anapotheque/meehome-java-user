@@ -91,7 +91,7 @@ public class Launcher {
         System.out.println("---------------------------------");
         System.out.print(" login : ");
         boolean success = userService.add(getLoginFromInput());
-        System.out.print(" Success : " + success);
+        System.out.println(" Success : " + success);
     }
 
     private static void deleteUser() throws IOException {
@@ -100,7 +100,7 @@ public class Launcher {
         System.out.println("---------------------------------");
         System.out.print(" login : ");
         boolean success = userService.delete(getLoginFromInput());
-        System.out.print(" Success : " + success);
+        System.out.println(" Success : " + success);
     }
 
     private static List<UserDto> getLoginFromInput() throws IOException {
