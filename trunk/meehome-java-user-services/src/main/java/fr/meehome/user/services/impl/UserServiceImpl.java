@@ -54,7 +54,9 @@ public class UserServiceImpl implements IUserService {
         boolean result = false;
         for (UserDto userDto : listUser) {
             List<User> listUserFind = userDao.findByLogin(userDto.getLogin());
-            userDao.remove(listUserFind.get(0));
+            if (listUserFind != null && !listUserFind.isEmpty()) {
+                result = userDao.remove(listUserFind.get(0));
+            }
         }
         return result;
     }
@@ -63,7 +65,7 @@ public class UserServiceImpl implements IUserService {
     public boolean add(List<UserDto> listUser) {
         boolean result = false;
         for (UserDto userDto : listUser) {
-            userDao.save(mapper.map(userDto, User.class));
+            result = userDao.save(mapper.map(userDto, User.class));
         }
         return result;
     }
@@ -72,7 +74,7 @@ public class UserServiceImpl implements IUserService {
     public boolean update(List<UserDto> listUser) {
         boolean result = false;
         for (UserDto userDto : listUser) {
-            userDao.save(mapper.map(userDto, User.class));
+            result = userDao.save(mapper.map(userDto, User.class));
         }
         return result;
     }
