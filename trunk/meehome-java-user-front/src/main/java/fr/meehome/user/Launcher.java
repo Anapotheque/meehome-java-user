@@ -26,7 +26,7 @@ public class Launcher {
         userService = (IUserService ) applicationContext.getBean("IUserService");
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         init();
 
@@ -37,22 +37,60 @@ public class Launcher {
         System.out.println("---------------------------------");
 
         while (run) {
-            switch (showAccueil()) {
-                case 1:
-                    showListeUser();
-                    break;
-                case 2:
-                    addUser();
-                    break;
-                case 3:
-                    deleteUser();
-                    break;
-                case 4:
-                    run = false;
-                    break;
-                default:
-                    showAccueil();
-                    break;
+            try {
+                switch (showAccueil()) {
+                    case 1:
+                        showListeUser();
+                        break;
+                    case 2:
+                        try {
+                            addUser();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            System.out.println("---------------------------------");
+                            System.out.println("Erreur de lecture, veuillez reessayer");
+                            System.out.println("---------------------------------");
+                        }
+                        break;
+                    case 3:
+                        try {
+                            deleteUser();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            System.out.println("---------------------------------");
+                            System.out.println("Erreur de lecture, veuillez reessayer");
+                            System.out.println("---------------------------------");
+                        }
+                        break;
+                    case 4:
+                        run = false;
+                        break;
+                    default:
+                        try {
+                            showAccueil();
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace();
+                            System.out.println("---------------------------------");
+                            System.out.println("Erreur de lecture, veuillez reessayer");
+                            System.out.println("---------------------------------");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            System.out.println("---------------------------------");
+                            System.out.println("Erreur de lecture, veuillez reessayer");
+                            System.out.println("---------------------------------");
+                        }
+                        break;
+                }
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                System.out.println("---------------------------------");
+                System.out.println("Erreur de lecture, veuillez reessayer");
+                System.out.println("---------------------------------");
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("---------------------------------");
+                System.out.println("Erreur de lecture, veuillez reessayer");
+                System.out.println("---------------------------------");
             }
         }
 
@@ -61,7 +99,7 @@ public class Launcher {
         System.out.println("---------------------------------");
     }
 
-    private static int showAccueil() throws IOException {
+    private static int showAccueil() throws NumberFormatException, IOException {
         System.out.println("---------------------------------");
         System.out.println("1 - Liste des utilisateurs");
         System.out.println("2 - Ajouter un utilisateur");
