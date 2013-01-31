@@ -1,1 +1,1 @@
-java -cp ../lib/hsqldb.jar org.hsqldb.server.Server --database.0 file:userdb --dbname.0 userdb
+java -cp ../lib/hsqldb.jar org.hsqldb.server.Server --database.0 file:comtedb --dbname.0 comptedb
