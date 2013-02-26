@@ -26,7 +26,8 @@ public class UserServiceImplTest {
     @Mock
     private IUserDao userDaoMock;
 
-    @Mock
+    @SuppressWarnings("unused")
+	@Mock
     private Mapper mapperMock;
 
     @Before
