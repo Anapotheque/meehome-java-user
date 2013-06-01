@@ -15,15 +15,52 @@
 	<packaging>war</packaging>
 	<name>meehome-java-user-webapp</name>
   
+	
+	
 	<dependencies>
 		<dependency>
 			<groupId>fr.meehome.user</groupId>
 			<artifactId>meehome-java-user-services</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+	
+		<!-- Spring 3 dependencies -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+ 		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+ 
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 	</dependencies>
-  <build>
-    <finalName>meehome-java-user-webapp</finalName>
-  </build>
-  
+		
+	<build>
+		<finalName>meehome-java-user-webapp</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.0</version>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<properties>
+		<jdk.version>1.6</jdk.version>
+	</properties>
+	
 </project>
