@@ -13,7 +13,8 @@
 		<module>meehome-java-user-services</module>
 		<module>meehome-java-user-front-web</module>
 		<module>meehome-java-user-front</module>
-	</modules>
+    <module>meehome-java-user-webapp</module>
+  </modules>
 	
 	<build>
 		<extensions>
