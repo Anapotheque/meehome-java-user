@@ -15,7 +15,7 @@ public class LoginValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "login", "required.login", "Login est requis");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "required.password", "Password est requis");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "login", "required.connexion.login", "Votre login est requis");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "required.connexion.password", "Votre mot de passe est requis");
     }
 }

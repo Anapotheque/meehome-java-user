@@ -15,6 +15,7 @@ body {
 	padding				: 10px;
 	width 				: 995px;
 	background-color	: #FFFFFF;
+	overflow			: auto; 
 }
 
 header, nav, section, article, aside, footer {

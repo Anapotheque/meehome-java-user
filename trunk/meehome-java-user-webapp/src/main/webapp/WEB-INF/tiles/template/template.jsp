@@ -15,7 +15,12 @@
 	            <tiles:insertAttribute name="navigation" />
 	        </nav>
 	        <div class="body">
-	            <tiles:insertAttribute name="body" />
+	            <aside>
+	            	<tiles:insertAttribute name="aside" />
+	            </aside>
+	            <section>
+	            	<tiles:insertAttribute name="section" />
+	            </section>
 	        </div>
 	        <div class="clear"></div>
 	        <footer>
