@@ -18,7 +18,6 @@ public class AccueilController {
 
     @ModelAttribute("user")
     public User initForm(HttpServletRequest request) {
-        String login = request.getRemoteUser();
         User user = new User();
         return user;
     }

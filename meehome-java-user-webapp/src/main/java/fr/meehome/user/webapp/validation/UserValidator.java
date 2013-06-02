@@ -9,7 +9,7 @@ import fr.meehome.user.webapp.model.User;
 public class UserValidator implements Validator {
 
     @Override
-    public boolean supports(Class clazz) {
+    public boolean supports(Class< ? > clazz) {
         return User.class.isAssignableFrom(clazz);
     }
 
