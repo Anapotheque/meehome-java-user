@@ -2,12 +2,21 @@
 
 <tiles-definitions>
 
-    <definition name="*/*" template="/WEB-INF/pages/tiles/template.jsp">
-        <put-attribute name="meta" value="/WEB-INF/pages/tiles/common/meta.jsp" />
-        <put-attribute name="header" value="/WEB-INF/pages/tiles/common/header.jsp" />
-        <put-attribute name="navigation" value="/WEB-INF/pages/tiles/common/navigation.jsp" />
-        <put-attribute name="body" value="/WEB-INF/pages/tiles/{2}/body.jsp" />
-        <put-attribute name="footer" value="/WEB-INF/pages/tiles/common/footer.jsp" />
+    <definition name="accueil" template="/WEB-INF/tiles/template/template.jsp">
+        <put-attribute name="meta" value="/WEB-INF/tiles/template/meta.jsp" />
+        <put-attribute name="header" value="/WEB-INF/tiles/connexion.jsp" />
+        <put-attribute name="navigation" value="/WEB-INF/tiles/template/navigation.jsp" />
+        <put-attribute name="body" value="/WEB-INF/tiles/accueil.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/tiles/template/footer.jsp" />
     </definition>
-
+    
+    <definition name="inscription" template="/WEB-INF/tiles/template/template.jsp">
+        <put-attribute name="meta" value="/WEB-INF/tiles/template/meta.jsp" />
+        <put-attribute name="header" value="/WEB-INF/tiles/connexion.jsp" />
+        <put-attribute name="navigation" value="/WEB-INF/tiles/template/navigation.jsp" />
+        <put-attribute name="body" value="/WEB-INF/tiles/inscription.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/tiles/template/footer.jsp" />
+    </definition>
+    
+    
 </tiles-definitions>
