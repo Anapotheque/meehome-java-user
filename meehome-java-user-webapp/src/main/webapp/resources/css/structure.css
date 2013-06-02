@@ -1,83 +1,48 @@
 body {
-	/*background-color	: #f4f4f4;*/
-	/*background		: url(../img/font1.jpg) no-repeat;*/
-	/*background-size	: 100%;*/
-	
-	/*
-	background-color: #0ae;
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.5, transparent), to(transparent));
-	background-image: -moz-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
-	background-image: -o-linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);
-	background-image: linear-gradient(rgba(255, 255, 255, .2) 50%, transparent 50%, transparent);*/
+	background-color	: #555555; 	
 }
 
-p {
-	margin: 0;
+.clear {
+	clear				: both; 
 }
 
 .wrapper {
 	margin 				: auto;
-	width 				: 80%;
-}
-
-div {
-   width: 200px;
-   padding: 35px 20px;
-   line-height: 1.5em;
-   color: #444444;
-   background-color: #ddd;
-   background-image: linear-gradient(#E5E5E5, #CFCFCF);
-}
-
-article:before, article:after {
-  -webkit-box-shadow: 0 15px 10px rgba(0,0,0, .7);
-  -moz-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
-  box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
-  -webkit-transform: rotate(-3deg);
-  -moz-transform: rotate(-3deg);
-  -o-transform: rotate(-3deg);
-  position: absolute;
-  left: 10px;
-  bottom: 15px;
-  z-index: -1;
-  width: 50%;
-  max-width: 300px;
-  height: 20%;
-  content: "";
+	margin-top			: 10px;
+	padding				: 10px;
+	width 				: 995px;
+	background-color	: #FFFFFF; 	
 }
 
 header {
-	margin-top			: 10px;
 	padding 			: 10px;
-	/*background-color	: #ffffff;*/
-	overflow			: auto;
-	 color: #444444;
-	background-image: linear-gradient(#E5E5E5, #CFCFCF);
-	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7),
-            -1px 2px 20px rgba(255, 255, 255, 0.6) inset; 
+	border				: 1px solid #D9D9D9;
 }
 
 nav{
 	margin 				: 10px 0;
-	background-color	: #ffffff;
+	padding 			: 10px;
+	border				: 1px solid #D9D9D9;
 }
 
 section {
-	width 				: 70%;	
+	width 				: 741px;	
 	float 				: left;
-	margin-bottom		: 10px;
-	background-color	: #ffffff;
+	margin-left			: 10px;
+	padding 			: 10px;
+	border				: 1px solid #D9D9D9;
 }
 
 aside {
-	width 				: 30%;
-	float 				: right;
-	margin-bottom		: 10px;
-	background-color	: #ffffff;
+	width 				: 200px;
+	float 				: left;
+	padding 			: 10px;
+	border				: 1px solid #D9D9D9;
 }
 
 footer {
 	clear				: both;
 	margin-top			: 10px;
-	background-color	: #ffffff;
+	padding 			: 10px;
+	border				: 1px solid #D9D9D9;
 }
