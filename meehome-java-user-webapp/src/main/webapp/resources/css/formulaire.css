@@ -3,7 +3,7 @@ hr {
 	border-top	: 1px solid #D9D9D9;
 }
 
-form label, form a {
+form label, form.formulaire a {
     display:block;
     width:150px; /* Attention : prenez une largeur suffisamment grande */
     float:left;

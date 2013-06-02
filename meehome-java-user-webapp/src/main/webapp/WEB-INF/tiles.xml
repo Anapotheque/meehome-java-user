@@ -2,21 +2,24 @@
 
 <tiles-definitions>
 
-    <definition name="accueil" template="/WEB-INF/tiles/template/template.jsp">
+	<!-- TEMPLATE -->
+    <definition name="template" template="/WEB-INF/tiles/template/template.jsp">
         <put-attribute name="meta" value="/WEB-INF/tiles/template/meta.jsp" />
         <put-attribute name="header" value="/WEB-INF/tiles/connexion.jsp" />
         <put-attribute name="navigation" value="/WEB-INF/tiles/template/navigation.jsp" />
-        <put-attribute name="body" value="/WEB-INF/tiles/accueil.jsp" />
+        <put-attribute name="aside" value="/WEB-INF/tiles/template/aside.jsp" />
+        <put-attribute name="section" value="/WEB-INF/tiles/template/section.jsp" />
         <put-attribute name="footer" value="/WEB-INF/tiles/template/footer.jsp" />
     </definition>
-    
-    <definition name="inscription" template="/WEB-INF/tiles/template/template.jsp">
-        <put-attribute name="meta" value="/WEB-INF/tiles/template/meta.jsp" />
-        <put-attribute name="header" value="/WEB-INF/tiles/connexion.jsp" />
-        <put-attribute name="navigation" value="/WEB-INF/tiles/template/navigation.jsp" />
-        <put-attribute name="body" value="/WEB-INF/tiles/inscription.jsp" />
-        <put-attribute name="footer" value="/WEB-INF/tiles/template/footer.jsp" />
+
+	<!-- ACCUEIL -->
+    <definition name="accueil" extends="template">
+        <put-attribute name="section" value="/WEB-INF/tiles/accueil.jsp" />
     </definition>
     
+    <!-- INSCRIPTION -->
+    <definition name="inscription" extends="template">
+        <put-attribute name="section" value="/WEB-INF/tiles/inscription.jsp" />
+    </definition>
     
 </tiles-definitions>
