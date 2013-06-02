@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import fr.meehome.user.webapp.model.User;
 import fr.meehome.user.webapp.validation.UserValidator;
@@ -23,8 +24,8 @@ public class AccueilController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String init() {
-        return "accueil";
+    public ModelAndView indexHandler() {
+        return new ModelAndView("/accueil", "user", new User());
     }
 
     @RequestMapping(method = RequestMethod.POST)

@@ -2,9 +2,10 @@
 
 <tiles-definitions>
 
-    <definition name="*/*" template="/WEB-INF/tiles/template.jsp">
+    <definition name="*/*" template="/WEB-INF/pages/tiles/template.jsp">
         <put-attribute name="meta" value="/WEB-INF/pages/tiles/common/meta.jsp" />
         <put-attribute name="header" value="/WEB-INF/pages/tiles/common/header.jsp" />
+        <put-attribute name="navigation" value="/WEB-INF/pages/tiles/common/navigation.jsp" />
         <put-attribute name="body" value="/WEB-INF/pages/tiles/{2}/body.jsp" />
         <put-attribute name="footer" value="/WEB-INF/pages/tiles/common/footer.jsp" />
     </definition>
