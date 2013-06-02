@@ -6,7 +6,7 @@ import org.springframework.validation.Validator;
 
 import fr.meehome.user.webapp.model.User;
 
-public class loginValidator implements Validator {
+public class LoginValidator implements Validator {
 
     @Override
     public boolean supports(Class< ? > clazz) {
