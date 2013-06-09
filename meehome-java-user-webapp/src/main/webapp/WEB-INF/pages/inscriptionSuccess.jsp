@@ -20,6 +20,6 @@
 	Prenom : ${user.prenom}
 	<br/><br/>
 	
-	<a href="<c:url value='/accueil' />">retour</a>
+	<a href="<c:url value='/accueil/' />">retour</a>
 	
 </form:form>

@@ -13,8 +13,7 @@ public class DeconnexionController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String accueil(ModelMap model) {
-        model.addAttribute("user", new User());
-        model.put("authorized", false);
-        return "redirect:accueil";
+        model.addAttribute("userAuthentificated", new User());
+        return "redirect:accueil/";
     }
 }

@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,12 +31,17 @@ public class AccueilController {
 
     // VALIDATION FORMULAIRE DE CONNEXION
     @RequestMapping(value = "/connexion", method = RequestMethod.POST)
-    public String connexion(@Valid Authentification authentification, BindingResult result) {
-
+    public String connexion(@Valid Authentification authentification, BindingResult result, ModelMap model) {
         if (!result.hasErrors()) {
-            System.out.println(authentification);
+            if (!authentification.getLogin().equals("Romain") || !authentification.getPassword().equals("13041983")) {
+                result.addError(new ObjectError("authentification.failed", "Votre login ou votre mot de passe n'est pas valide"));
+            } else {
+                User user = new User();
+                user.setNom("RABALLAND");
+                user.setPrenom("Romain");
+                model.addAttribute("userAuthentificated", user);
+            }
         }
-
         return "accueil";
     }
 
@@ -53,6 +59,6 @@ public class AccueilController {
         if (result.hasErrors()) {
             return "inscription";
         }
-        return "redirect:" + "inscriptionSuccess";
+        return "inscriptionSuccess";
     }
 }
