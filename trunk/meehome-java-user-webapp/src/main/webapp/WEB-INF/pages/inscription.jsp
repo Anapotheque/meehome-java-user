@@ -11,7 +11,7 @@
 	<hr/>
 	<i>Veuillez renseigner l'ensemble de ses champs afin de valider votre inscription</i><br/><br/>
 
-	<form:errors path="*" cssClass="ui-state-error ui-corner-all" cssStyle="padding: 10px;" element="div" />
+	<form:errors path="*" cssClass="ui-state-error ui-corner-all error" element="div" />
 
 	<label>Login</label>
 	<form:input path="login" placeholder="login" />
