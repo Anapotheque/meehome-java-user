@@ -1,54 +1,58 @@
 package fr.meehome.user.webapp.controller;
 
-import java.util.HashMap;
-import java.util.Map;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.ModelAndView;
 
+import fr.meehome.user.webapp.model.Authentification;
 import fr.meehome.user.webapp.model.User;
-import fr.meehome.user.webapp.validation.LoginValidator;
 
 @Controller
 @RequestMapping("/accueil")
 public class AccueilController {
 
-    private final String VIEW = "accueil";
-
-    @RequestMapping(method = RequestMethod.GET)
-    public String accueil(ModelMap model) {
-        model.addAttribute("user", new User());
-        model.put("authorized", false);
-        return VIEW;
+    @ModelAttribute("authentification")
+    public Authentification getAuthentification() {
+        return new Authentification();
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView connexion(@ModelAttribute("user")
-    User user, BindingResult result, SessionStatus status) {
-        new LoginValidator().validate(user, result);
+    // AFFICHE LA PAGE D'ACCUEIL
+    @RequestMapping(method = RequestMethod.GET)
+    public String accueil(ModelMap model) {
+        model.addAttribute("authentification", new Authentification());
+        return "accueil";
+    }
 
-        Map<String, Object> model = new HashMap<String, Object>();
+    // VALIDATION FORMULAIRE DE CONNEXION
+    @RequestMapping(value = "/connexion", method = RequestMethod.POST)
+    public String connexion(@Valid Authentification authentification, BindingResult result) {
 
+        if (!result.hasErrors()) {
+            System.out.println(authentification);
+        }
+
+        return "accueil";
+    }
+
+    // AFFICHE LA PAGE D'INSCRIPTION
+    @RequestMapping(value = "/inscription", method = RequestMethod.GET)
+    public String inscription(ModelMap model) {
+        model.addAttribute("authentification", new Authentification());
+        model.addAttribute("user", new User());
+        return "inscription";
+    }
+
+    // VALIDATION FORMULAIRE INSCRIPTION
+    @RequestMapping(value = "/inscription", method = RequestMethod.POST)
+    public String connexion(@ModelAttribute("user") @Valid User user, BindingResult result) {
         if (result.hasErrors()) {
-            return new ModelAndView(VIEW, model);
+            return "inscription";
         }
-
-        if (!user.getLogin().equals("test") || !user.getPassword().equals("test")) {
-            result.addError(new ObjectError("nonAutorised", "non authorisé"));
-        } else {
-            user.setNom("Raballand");
-            user.setPrenom("Romain");
-            model.put("authorized", true);
-            status.setComplete();
-        }
-
-        return new ModelAndView(VIEW, model);
+        return "redirect:" + "inscriptionSuccess";
     }
 }
