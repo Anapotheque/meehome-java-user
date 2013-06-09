@@ -11,12 +11,10 @@ import fr.meehome.user.webapp.model.User;
 @RequestMapping("/deconnexion")
 public class DeconnexionController {
 
-    private final String VIEW = "accueil";
-
     @RequestMapping(method = RequestMethod.GET)
     public String accueil(ModelMap model) {
         model.addAttribute("user", new User());
         model.put("authorized", false);
-        return VIEW;
+        return "redirect:accueil";
     }
 }
