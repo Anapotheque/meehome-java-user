@@ -10,9 +10,10 @@ HEADER
 		
 		<c:choose>
 			<c:when test="${empty userAuthentificated.nom}">
-				<form:input path="login" placeholder="login" />
-				<form:password path="password" placeholder="password"  />
-				<button id="buttonConnexion">connexion</button>
+					<form:input path="login" placeholder="login" />
+					<form:password path="password" placeholder="password"  />
+					<button id="buttonConnexion" style="vertical-align: top;height: 27px;">connexion</button>
+				
 			</c:when>
 			<c:otherwise>
 				<div style="text-align:right">
