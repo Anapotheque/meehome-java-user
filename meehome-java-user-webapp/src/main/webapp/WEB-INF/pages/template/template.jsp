@@ -7,23 +7,23 @@
         <tiles:insertAttribute name="meta" />
     </head>
     <body>
-    	<div class="wrapper">
-    	    <header>
+    	<div class="wrapper ui-corner-all">
+    	    <header class="ui-corner-all">
 	            <tiles:insertAttribute name="header" />
 	        </header>
-	        <nav>
+	        <nav class="ui-corner-all">
 	            <tiles:insertAttribute name="navigation" />
 	        </nav>
 	        <div class="body">
-	            <aside>
+	            <aside class="ui-corner-all">
 	            	<tiles:insertAttribute name="aside" />
 	            </aside>
-	            <section>
+	            <section class="ui-corner-all">
 	            	<tiles:insertAttribute name="section" />
 	            </section>
 	        </div>
 	        <div class="clear"></div>
-	        <footer>
+	        <footer class="ui-corner-all">
 	            <tiles:insertAttribute name="footer" />
 	        </footer>
         </div>
