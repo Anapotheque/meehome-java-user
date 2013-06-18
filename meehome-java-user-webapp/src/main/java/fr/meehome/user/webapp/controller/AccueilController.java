@@ -2,6 +2,7 @@ package fr.meehome.user.webapp.controller;
 
 import javax.validation.Valid;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -16,6 +17,8 @@ import fr.meehome.user.webapp.model.User;
 @Controller
 @RequestMapping("/accueil")
 public class AccueilController {
+
+    private static final Logger logger = Logger.getLogger(AccueilController.class);
 
     @ModelAttribute("authentification")
     public Authentification getAuthentification() {
@@ -61,4 +64,5 @@ public class AccueilController {
         }
         return "inscriptionSuccess";
     }
+
 }

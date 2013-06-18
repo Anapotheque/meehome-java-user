@@ -3,7 +3,7 @@
 Menu
 <hr/>
 <c:choose>
-	<c:when test="${authorized}">
+	<c:when test="${empty not userAuthentificated.nom}">
 		
 		<script>$(function(){$("#accordion").accordion();});</script>
 		<div id="accordion">
