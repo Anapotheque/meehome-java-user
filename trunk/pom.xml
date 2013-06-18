@@ -12,7 +12,7 @@
 		<module>meehome-java-user-dao</module>
 		<module>meehome-java-user-services</module>
 		<module>meehome-java-user-webapp</module>
-	</modules>
+  </modules>
 	
 	<build>
 		<extensions>
@@ -76,6 +76,7 @@
 	<properties>
 		<wagon-svn.version>1.9</wagon-svn.version>
 		<spring.version>3.2.2.RELEASE</spring.version>
+		<spring.security.version>3.0.5.RELEASE</spring.security.version>
 		<slf4j.version>1.7.2</slf4j.version>
 		<log4j.version>1.2.17</log4j.version>
 		<hsqldb.version>1.8.0.10</hsqldb.version>
