@@ -12,9 +12,9 @@ public interface IUserService {
 
     public boolean isAuthorized(String login, String password);
 
-    public boolean delete(List<UserDto> listUser);
+    public boolean delete(String login);
 
-    public boolean add(List<UserDto> listUser);
+    public boolean add(UserDto userDto);
 
-    public boolean update(List<UserDto> listUser);
+    public boolean update(UserDto userDto);
 }
