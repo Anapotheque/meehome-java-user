@@ -14,7 +14,7 @@ import fr.meehome.user.dao.domain.User;
 import fr.meehome.user.services.IUserService;
 import fr.meehome.user.services.dto.UserDto;
 
-@Service(value = "IUserService")
+@Service
 @Transactional
 public class UserServiceImpl implements IUserService {
 
@@ -50,32 +50,22 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public boolean delete(List<UserDto> listUser) {
+    public boolean delete(String login) {
         boolean result = false;
-        for (UserDto userDto : listUser) {
-            List<User> listUserFind = userDao.findByLogin(userDto.getLogin());
-            if (listUserFind != null && !listUserFind.isEmpty()) {
-                result = userDao.remove(listUserFind.get(0));
-            }
+        List<User> listUserFind = userDao.findByLogin(login);
+        if (listUserFind != null && !listUserFind.isEmpty()) {
+            result = userDao.remove(listUserFind.get(0));
         }
         return result;
     }
 
     @Override
-    public boolean add(List<UserDto> listUser) {
-        boolean result = false;
-        for (UserDto userDto : listUser) {
-            result = userDao.save(mapper.map(userDto, User.class));
-        }
-        return result;
+    public boolean add(UserDto userDto) {
+        return userDao.save(mapper.map(userDto, User.class));
     }
 
     @Override
-    public boolean update(List<UserDto> listUser) {
-        boolean result = false;
-        for (UserDto userDto : listUser) {
-            result = userDao.save(mapper.map(userDto, User.class));
-        }
-        return result;
+    public boolean update(UserDto userDto) {
+        return userDao.save(mapper.map(userDto, User.class));
     }
 }
