@@ -17,9 +17,9 @@
 	<dependencies>
 		
 		<dependency>
-		  <groupId>fr.meehome.user</groupId>
-		  <artifactId>meehome-java-user-services</artifactId>
-		  <version>${project.version}</version>
+			<groupId>fr.meehome.user</groupId>
+			<artifactId>meehome-java-user-services</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 		
 	</dependencies>
