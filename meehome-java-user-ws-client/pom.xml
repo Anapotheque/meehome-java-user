@@ -17,27 +17,51 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-codegen-plugin</artifactId>
-				<version>${cxf.version}</version>
-				<executions>
-					<execution>
-						<id>generate-sources</id>
-						<phase>generate-sources</phase>
-						<configuration>
-							<wsdlRoot>${basedir}/src/main/resources/wsdl</wsdlRoot>
-							<wsdlOptions>
-								<wsdlOption>
-									<wsdl>${basedir}/src/main/resources/wsdl/BookService.wsdl</wsdl>
-								</wsdlOption>
-							</wsdlOptions>
-						</configuration>
-						<goals>
-							<goal>wsdl2java</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+		        <groupId>com.googlecode.maven-download-plugin</groupId>
+		        <artifactId>maven-download-plugin</artifactId>
+		        <version>1.0.0</version>
+		        <executions>
+		            <execution>
+		                <id>Download wsdl</id>
+		                <goals>
+		                    <goal>wget</goal>
+		                </goals>
+		                <phase>validate</phase>
+		                <configuration>
+		                    <url>http://localhost:8080/meehome-java-user-ws/services/user?wsdl</url>
+		                    <outputDirectory>${basedir}/target/resources/wsdl</outputDirectory>
+		                    <outputFileName>userService.wsdl</outputFileName>
+		                </configuration>
+		            </execution>
+		        </executions>
+		    </plugin>
+		    
+		    <plugin>
+		        <groupId>org.apache.cxf</groupId>
+		        <artifactId>cxf-codegen-plugin</artifactId>
+		        <version>${cxf.version}</version>
+		        <executions>
+		            <execution>
+		                <id>generate-sources</id>
+		                <phase>generate-sources</phase>
+		                <configuration>
+		                    <wsdlRoot>${basedir}/target/resources/wsdl</wsdlRoot>
+		                    <wsdlOptions>
+		                        <wsdlOption>
+		                            <wsdl>${basedir}/target/resources/wsdl/userService.wsdl</wsdl>
+		                            <extraargs>
+		                                <extraarg>-client</extraarg>
+		                            </extraargs>
+		                        </wsdlOption>
+		                    </wsdlOptions>
+		                </configuration>
+		                <goals>
+		                    <goal>wsdl2java</goal>
+		                </goals>
+		            </execution>
+		        </executions>
+		    </plugin>
+		    
 		</plugins>
 	</build>
 	
