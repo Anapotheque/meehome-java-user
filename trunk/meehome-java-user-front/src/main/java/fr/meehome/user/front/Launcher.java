@@ -50,7 +50,7 @@ public class Launcher {
                     case 4:
                         delete();
                         break;
-                    case 'Q':
+                    case 5:
                         run = false;
                         break;
                     default:
@@ -85,7 +85,7 @@ public class Launcher {
         System.out.println("2 - Nouveau user");
         System.out.println("3 - Recherche user par login");
         System.out.println("4 - Suprression user par login");
-        System.out.println("Q - Quitter");
+        System.out.println("5 - Quitter");
         System.out.println("---------------------------------");
         return Integer.parseInt(bufferedReader.readLine());
     }
