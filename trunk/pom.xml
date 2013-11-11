@@ -69,13 +69,13 @@
 	
 	<distributionManagement>
 		<repository>
-			<id>meehome-java-user-releases</id>
+			<id>meehome-java-user.googlecode.com</id>
 			<uniqueVersion>false</uniqueVersion>
 			<name>Maven Repository for Config Processor Plugin</name>
 			<url>svn:https://meehome-java-user.googlecode.com/svn/repository/releases</url>
 		</repository>
 		<snapshotRepository>
-			<id>meehome-java-user-snapshots</id>
+			<id>meehome-java-user.googlecode.com</id>
 			<uniqueVersion>false</uniqueVersion>
 			<name>Maven Repository for Config Processor Plugin (snapshots)</name>
 			<url>svn:https://meehome-java-user.googlecode.com/svn/repository/snapshots</url>
