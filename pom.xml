@@ -63,8 +63,8 @@
 	</repositories>
 
 	<scm>
-		<connection>scm:svn:https://meehome-java-user.googlecode.com/svn/tags/meehome-java-user-1.0</connection>
-		<developerConnection>scm:svn:https://meehome-java-user.googlecode.com/svn/tags/meehome-java-user-1.0</developerConnection>
+		<connection>scm:svn:https://meehome-java-user.googlecode.com/svn/trunk</connection>
+		<developerConnection>scm:svn:https://meehome-java-user.googlecode.com/svn/trunk</developerConnection>
 	</scm>
 	
 	<distributionManagement>
