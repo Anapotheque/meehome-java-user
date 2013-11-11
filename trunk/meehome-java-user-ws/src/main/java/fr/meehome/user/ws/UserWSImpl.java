@@ -1,46 +1,51 @@
 package fr.meehome.user.ws;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.jws.WebParam;
 
+import org.dozer.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
+import fr.meehome.user.services.IUserService;
 import fr.meehome.user.ws.dto.UserDto;
 
 public class UserWSImpl implements IUserWS {
 
+	@Autowired
+	private IUserService userService;
+	
+	@Autowired
+    @Qualifier("dozerBeanMapper")
+    private Mapper mapper;
+
+    private List<UserDto> populateUserDto(List<fr.meehome.user.services.dto.UserDto> listUserServiceDto) {
+        List<UserDto> listUserWsDto = new ArrayList<UserDto>();
+        for (fr.meehome.user.services.dto.UserDto userServiceDto : listUserServiceDto) {
+        	listUserWsDto.add(mapper.map(userServiceDto, UserDto.class));
+        }
+        return listUserWsDto;
+    }
+	
     @Override
     public List<UserDto> getAll() {
-        UserDto userDto = new UserDto();
-        userDto.setNom("test");
-        userDto.setPrenom("test");
-        return Arrays.asList(userDto);
+        return populateUserDto(userService.getAll());
     }
 
     @Override
     public List<UserDto> getUserByLogin(@WebParam(name = "userLogin") String login) {
-        // TODO Auto-generated method stub
-        return null;
+        return populateUserDto(userService.getUserByLogin(login));
     }
 
     @Override
     public boolean isAuthorized(@WebParam(name = "userLogin") String login, @WebParam(name = "userPassword") String password) {
-        // TODO Auto-generated method stub
-        return false;
+        return userService.isAuthorized(login, password);
     }
 
     @Override
     public boolean delete(@WebParam(name = "userLogin") String login) {
-        // TODO Auto-generated method stub
-        return false;
+    	return userService.delete(login);
     }
-
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-
-    }
-
 }

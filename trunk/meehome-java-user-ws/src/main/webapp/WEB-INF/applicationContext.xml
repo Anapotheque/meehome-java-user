@@ -11,5 +11,7 @@
 
     <jaxws:server serviceClass="fr.meehome.user.ws.IUserWS" address="/user" serviceBean="#user" />
     <bean id="user" class="fr.meehome.user.ws.UserWSImpl" />
+    
+    <bean id="dozerBeanMapper" class="org.dozer.DozerBeanMapper" />
 
 </beans>
