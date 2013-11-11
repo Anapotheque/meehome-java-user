@@ -5,12 +5,12 @@
 	<parent>
 		<groupId>fr.meehome.user</groupId>
 		<artifactId>meehome-java-user</artifactId>
-		<version>1.0</version>
+		<version>1.1-SNAPSHOT</version>
 	</parent>
   
 	<groupId>fr.meehome.user</groupId>
 	<artifactId>meehome-java-user-webapp</artifactId>
-	<version>1.0</version>
+	<version>1.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>meehome-java-user-webapp</name>
 
