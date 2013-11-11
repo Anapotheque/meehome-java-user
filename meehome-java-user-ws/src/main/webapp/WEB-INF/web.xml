@@ -9,7 +9,7 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-<!--         	classpath:/fr/meehome/user/services/applicationContext.xml  -->
+        	classpath:/fr/meehome/user/services/applicationContext.xml 
         	WEB-INF/applicationContext.xml
         </param-value>
     </context-param>
