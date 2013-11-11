@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.user.meehome.fr/">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <ws:getUserByLogin>
-         <userLogin>Thetanos</userLogin>
-      </ws:getUserByLogin>
-   </soapenv:Body>
-</soapenv:Envelope>
