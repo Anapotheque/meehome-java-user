@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="UserWebService" resourceRoot="" soapui-version="4.6.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="UserServiceSoapBinding" type="wsdl" bindingName="{http://ws.user.meehome.fr/}UserServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/meehome-java-user-ws/services/user?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/meehome-java-user-ws/services/user?wsdl"><con:part><con:url>http://localhost:8080/meehome-java-user-ws/services/user?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="UserService" targetNamespace="http://ws.user.meehome.fr/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ws.user.meehome.fr/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://ws.user.meehome.fr/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="delete" type="tns:delete"/>
+      <xs:element name="deleteResponse" type="tns:deleteResponse"/>
+      <xs:element name="getAll" type="tns:getAll"/>
+      <xs:element name="getAllResponse" type="tns:getAllResponse"/>
+      <xs:element name="getUserByLogin" type="tns:getUserByLogin"/>
+      <xs:element name="getUserByLoginResponse" type="tns:getUserByLoginResponse"/>
+      <xs:element name="isAuthorized" type="tns:isAuthorized"/>
+      <xs:element name="isAuthorizedResponse" type="tns:isAuthorizedResponse"/>
+      <xs:complexType name="delete">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="userLogin" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deleteResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="isAuthorized">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="userLogin" type="xs:string"/>
+          <xs:element minOccurs="0" name="userPassword" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="isAuthorizedResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getAll">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="getAllResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:userDto"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="userDto">
+        <xs:sequence>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element minOccurs="0" name="login" type="xs:string"/>
+          <xs:element minOccurs="0" name="nom" type="xs:string"/>
+          <xs:element minOccurs="0" name="password" type="xs:string"/>
+          <xs:element minOccurs="0" name="prenom" type="xs:string"/>
+          <xs:element minOccurs="0" name="roleEnumDto" type="tns:roleEnumDto"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getUserByLogin">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="userLogin" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getUserByLoginResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:userDto"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="roleEnumDto">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="ADMINISTRATEUR"/>
+          <xs:enumeration value="VISITEUR"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getAllResponse">
+    <wsdl:part element="tns:getAllResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isAuthorizedResponse">
+    <wsdl:part element="tns:isAuthorizedResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteResponse">
+    <wsdl:part element="tns:deleteResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserByLogin">
+    <wsdl:part element="tns:getUserByLogin" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserByLoginResponse">
+    <wsdl:part element="tns:getUserByLoginResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAll">
+    <wsdl:part element="tns:getAll" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delete">
+    <wsdl:part element="tns:delete" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isAuthorized">
+    <wsdl:part element="tns:isAuthorized" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="UserService">
+    <wsdl:operation name="delete">
+      <wsdl:input message="tns:delete" name="delete"></wsdl:input>
+      <wsdl:output message="tns:deleteResponse" name="deleteResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isAuthorized">
+      <wsdl:input message="tns:isAuthorized" name="isAuthorized"></wsdl:input>
+      <wsdl:output message="tns:isAuthorizedResponse" name="isAuthorizedResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAll">
+      <wsdl:input message="tns:getAll" name="getAll"></wsdl:input>
+      <wsdl:output message="tns:getAllResponse" name="getAllResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserByLogin">
+      <wsdl:input message="tns:getUserByLogin" name="getUserByLogin"></wsdl:input>
+      <wsdl:output message="tns:getUserByLoginResponse" name="getUserByLoginResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UserServiceSoapBinding" type="tns:UserService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="delete">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="delete">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAll">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAll">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isAuthorized">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="isAuthorized">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="isAuthorizedResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserByLogin">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUserByLogin">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUserByLoginResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UserService">
+    <wsdl:port binding="tns:UserServiceSoapBinding" name="UserServicePort">
+      <soap:address location="http://localhost:8080/meehome-java-user-ws/services/user"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/meehome-java-user-ws/services/user</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="delete" bindingOperationName="delete" type="Request-Response" outputName="deleteResponse" inputName="delete" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Thetanos"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/meehome-java-user-ws/services/user</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.user.meehome.fr/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ws:delete>
+         <!--Optional:-->
+         <userLogin>?</userLogin>
+      </ws:delete>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.user.meehome.fr/UserService/delete"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getAll" bindingOperationName="getAll" type="Request-Response" outputName="getAllResponse" inputName="getAll" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="All"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/meehome-java-user-ws/services/user</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.user.meehome.fr/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ws:getAll/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.user.meehome.fr/UserService/getAll"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getUserByLogin" bindingOperationName="getUserByLogin" type="Request-Response" outputName="getUserByLoginResponse" inputName="getUserByLogin" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Thetanos"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/meehome-java-user-ws/services/user</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.user.meehome.fr/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ws:getUserByLogin>
+         <userLogin>Thetanos</userLogin>
+      </ws:getUserByLogin>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.user.meehome.fr/UserService/getUserByLogin"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="isAuthorized" bindingOperationName="isAuthorized" type="Request-Response" outputName="isAuthorizedResponse" inputName="isAuthorized" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Thetanos - 13041983"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/meehome-java-user-ws/services/user</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.user.meehome.fr/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ws:isAuthorized>
+         <userLogin>Thetanos</userLogin>
+         <userPassword>13041983</userPassword>
+      </ws:isAuthorized>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://ws.user.meehome.fr/UserService/isAuthorized"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/></con:soapui-project>
