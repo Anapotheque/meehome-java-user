@@ -47,12 +47,18 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		
 	</build>
 	
 	<repositories>
 		<repository>
 		    <id>excilys-release</id>
 		    <url>http://repository.excilys.com/content/repositories/releases</url>
+		</repository>
+	
+		<repository>
+		    <id>JBoss repository</id>
+			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
 		</repository>
 	</repositories>
 
