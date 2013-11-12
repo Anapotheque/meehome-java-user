@@ -5,17 +5,17 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Authentification {
 
     @NotEmpty
-    private String login;
+    private String email;
 
     @NotEmpty
     private String password;
 
-    public String getLogin() {
-        return login;
+    public String getEmail() {
+        return email;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
