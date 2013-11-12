@@ -9,23 +9,26 @@
 <html>
     <head>
         <title>Page non trouvée</title>
-		<meta charset="utf-8" />
-		<link rel="stylesheet" href="<c:url value='/resources/css/normalize.css' />" type="text/css" />
-		<link rel="stylesheet" href="<c:url value='/resources/css/structure.css' />" type="text/css" />
-		<link rel="stylesheet" href="<c:url value='/resources/css/formulaire.css' />" type="text/css" />
+        <link rel="stylesheet" href="<c:url value='/resources/bootstrap-3.0.0/css/bootstrap-theme.css' />" type="text/css" />
+		<link rel="stylesheet" href="<c:url value='/resources/bootstrap-3.0.0/css/bootstrap.css' />" type="text/css" />
+		<link rel="stylesheet" href="<c:url value='/resources/css/meehome-java-user.css' />" />
 		
-		<!-- TEST -->
-		<link href="<c:url value='/resources/css/smoothness/jquery-ui-1.10.3.custom.css'/>" rel="stylesheet">
-		<script src="<c:url value='/resources/js/jquery-1.9.1.js'/>"></script>
-		<script src="<c:url value='/resources/js/jquery-ui-1.10.3.custom.js'/>"></script>
     </head>
     <body>
-    	<div class="wrapper">
-   	    	<div class="ui-state-error ui-corner-all" style="padding: 20px;text-align:center;">
-            	<p>VOTRE PAGE N'EXISTE PAS</p>
-            	<br/>
-            	<a href="<c:url value='/accueil/' />">Retour à la page d'accueil</a>
-            </div>
-        </div>
+    	
+    	<section>
+	    	<style>section {width:400px;float:none;margin:auto;margin-top:100px;}</style>
+		
+			<div class="panel panel-danger">
+				<div class="panel-heading">
+					<h3 class="panel-title">Erreur : page non trouvée</h3>
+				</div>
+				<div class="panel-body">
+					<p>Votre page n'existe pas</p>
+					<a href="<c:url value='/accueil/' />">Retour à la page d'accueil</a>
+				</div>
+			</div>
+		</section>
+    
     </body>
 </html>

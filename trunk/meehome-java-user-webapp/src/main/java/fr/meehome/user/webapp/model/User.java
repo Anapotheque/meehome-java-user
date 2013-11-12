@@ -4,8 +4,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class User {
 
-    @NotEmpty(message = "Veuillez renseigner votre login")
-    private String login;
+    @NotEmpty(message = "Veuillez renseigner votre email")
+    private String email;
 
     @NotEmpty(message = "Veuillez renseigner votre password")
     private String password;
@@ -16,12 +16,12 @@ public class User {
     @NotEmpty(message = "Veuillez renseigner votre prenom")
     private String prenom;
 
-    public String getLogin() {
-        return login;
+    public String getEmail() {
+        return email;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {

@@ -1,0 +1,33 @@
+.error {
+	padding 			: 10px;
+	margin-bottom 		: 10px;
+}
+
+.clear {
+	clear				: both; 
+}
+
+.wrapper {
+	margin 				: auto;
+	margin-top			: 10px;
+	margin-bottom		: 10px;
+	padding				: 10px;
+	width 				: 995px;
+	background-color	: #FFFFFF;
+	overflow			: auto; 
+}
+
+section {
+	width 				: 765px;	
+	float 				: left;
+	margin-left			: 10px;
+}
+
+aside {
+	width 				: 200px;
+	float 				: left;
+}
+
+footer {
+	font-size			: 10px;
+}
