@@ -10,45 +10,45 @@
 	<div class="panel panel-default">
 		
 		<div class="panel-heading">
-			<h3 class="panel-title">Accueil</h3>
+			<h3 class="panel-title">Inscription</h3>
 		</div>
 		<div class="panel-body">
 		
-			<p><i>Veuillez renseigner l'ensemble de ces champs afin de valider votre inscription</i></p>
+			<p><i>Veuillez renseigner l'ensemble des champs suivant</i></p>
 		
 			<form:errors path="*" cssClass="ui-state-error ui-corner-all error" element="div" />
 			
 			<div class="form-group">
 				<label for="emailUser" class="col-lg-2 control-label">Email</label>
-				<div class="col-lg-10">
+				<div class="col-lg-5">
 					<form:input path="email" placeholder="email" id="emailUser" class="form-control" />
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label for="nom" class="col-lg-2 control-label">Nom</label>
-				<div class="col-lg-10">
+				<div class="col-lg-5">
 					<form:input path="nom" placeholder="nom" id="nom" class="form-control" />
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label for="prenom" class="col-lg-2 control-label">Prenom</label>
-				<div class="col-lg-10">
+				<div class="col-lg-5">
 					<form:input path="prenom" placeholder="prenom" id="prenom" class="form-control" />
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label for="passwordUser" class="col-lg-2 control-label">Password</label>
-				<div class="col-lg-10">
+				<div class="col-lg-5">
 					<form:password path="password" placeholder="password" id="passwordUser" class="form-control" />
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<a href="<c:url value='/accueil/' />" class="col-lg-2 control-label">retour</a>
-				<div class="col-lg-10">
+				<div class="col-lg-5">
 					<button id="buttonInscription" class="btn btn-default">valider</button>
 				</div>
 			</div>

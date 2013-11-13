@@ -5,31 +5,55 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<form:form method="POST" cssClass="formulaire" commandName="user">
+<form:form method="POST" cssClass="formulaire form-horizontal" commandName="user">
 	
-	Formulaire de mise à jour User
-	<hr/>
-	<i>Veuillez renseigner l'ensemble de ses champs suivant</i><br/><br/>
-
-	<form:errors path="*" cssClass="ui-state-error ui-corner-all error" element="div" />
-
-	<label>Email</label>
-	<form:input path="email" placeholder="email" value="${user.email}" />
-	<br/><br/>
+	<div class="panel panel-default">
 	
-	<label>Nom</label>
-	<form:input path="nom" placeholder="nom" value="${user.nom}" />
-	<br/><br/>
-	
-	<label>Prenom</label>
-	<form:input path="prenom" placeholder="prenom" value="${user.prenom}" />
-	<br/><br/>
-	
-	<label>Password</label>
-	<form:password path="password" placeholder="password" value="${user.password}" />
-	<br/><br/>
-	
-	<a href="<c:url value='/accueil/' />">retour</a>
-	<button id="buttonInscription">valider</button>
-	
+		<div class="panel-heading">
+			<h3 class="panel-title">Formulaire de mise à jour User</h3>
+		</div>
+		<div class="panel-body">
+		
+			<p><i>Veuillez renseigner l'ensemble des champs suivant</i></p>
+		
+			<form:errors path="*" cssClass="ui-state-error ui-corner-all error" element="div" />
+		
+			<div style="margin:auto">
+			<div class="form-group">
+				<label for="emailUser" class="col-lg-2 control-label">Email</label>
+				<div class="col-lg-5">
+					<form:input path="email" placeholder="email" id="emailUser" class="form-control" value="${user.email}" />
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="nom" class="col-lg-2 control-label">Nom</label>
+				<div class="col-lg-5">
+					<form:input path="nom" placeholder="nom" id="nom" class="form-control" value="${user.nom}" />
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="prenom" class="col-lg-2 control-label">Prenom</label>
+				<div class="col-lg-5">
+					<form:input path="prenom" placeholder="prenom" id="prenom" class="form-control" value="${user.prenom}" />
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="passwordUser" class="col-lg-2 control-label">Password</label>
+				<div class="col-lg-5">
+					<form:password path="password" placeholder="password" id="passwordUser" class="form-control" value="${user.password}" />
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<a href="<c:url value='/accueil/' />" class="col-lg-2 control-label">retour</a>
+				<div class="col-lg-5">
+					<button class="btn btn-default">valider</button>
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
 </form:form>
