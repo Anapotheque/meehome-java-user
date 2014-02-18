@@ -35,8 +35,8 @@ public class UserDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
     }
 
     @Test
-    public void should_return_one_user_by_login() {
-        List<User> listUsers = userDao.findByLogin("login1");
+    public void should_return_one_user_by_email() {
+        List<User> listUsers = userDao.findByEmail("email1");
         Assert.assertEquals(1, listUsers.size());
     }
 
@@ -47,22 +47,22 @@ public class UserDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
     }
 
     @Test
-    public void should_update_one_user_by_login() {
-        List<User> listUsers = userDao.findByLogin("login1");
-        listUsers.get(0).setLogin("login3");
+    public void should_update_one_user_by_email() {
+        List<User> listUsers = userDao.findByEmail("email1");
+        listUsers.get(0).setEmail("email3");
         userDao.save(listUsers.get(0));
-        listUsers = userDao.findByLogin("login3");
+        listUsers = userDao.findByEmail("email3");
         Assert.assertEquals(1, listUsers.size());
     }
 
     @Test
-    public void should_delete_one_user_by_login() {
-        userDao.remove(userDao.findByLogin("login1").get(0));
+    public void should_delete_one_user_by_email() {
+        userDao.remove(userDao.findByEmail("email1").get(0));
         Assert.assertEquals(1, userDao.findAll().size());
     }
 
     @Test
-    public void should_delete_all_users_by_login() {
+    public void should_delete_all_users_by_email() {
         for (User user : userDao.findAll()) {
             userDao.remove(user);
         }
@@ -72,7 +72,7 @@ public class UserDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
     @Test
     public void should_insert_one_user() {
         User user = new User();
-        user.setLogin("login3");
+        user.setEmail("email3");
         userDao.save(user);
         Assert.assertEquals(3, userDao.findAll().size());
     }

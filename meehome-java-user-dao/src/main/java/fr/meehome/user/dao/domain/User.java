@@ -19,8 +19,8 @@ public class User {
     @Column(name = "USER_ID")
     private int id;
 
-    @Column(name = "USER_LOGIN")
-    private String login;
+    @Column(name = "USER_EMAIL")
+    private String email;
 
     @Column(name = "USER_PASSWORD")
     private String password;
@@ -47,11 +47,11 @@ public class User {
             return false;
         }
         final User other = (User ) obj;
-        if (getLogin() == null) {
-            if (other.getLogin() != null) {
+        if (getEmail() == null) {
+            if (other.getEmail() != null) {
                 return false;
             }
-        } else if (!getLogin().equals(other.getLogin())) {
+        } else if (!getEmail().equals(other.getEmail())) {
             return false;
         }
         return true;
@@ -61,7 +61,7 @@ public class User {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((getLogin() == null) ? 0 : getLogin().hashCode());
+        result = prime * result + ((getEmail() == null) ? 0 : getEmail().hashCode());
         return result;
     }
 
@@ -71,14 +71,6 @@ public class User {
 
     public int getId() {
         return id;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getLogin() {
-        return login;
     }
 
     public void setPassword(String password) {
@@ -105,11 +97,19 @@ public class User {
         this.prenom = prenom;
     }
 
-	public RoleEnum getRoleEnum() {
-		return roleEnum;
-	}
+    public RoleEnum getRoleEnum() {
+        return roleEnum;
+    }
 
-	public void setRoleEnum(RoleEnum roleEnum) {
-		this.roleEnum = roleEnum;
-	}
+    public void setRoleEnum(RoleEnum roleEnum) {
+        this.roleEnum = roleEnum;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
