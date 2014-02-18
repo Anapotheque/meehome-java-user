@@ -35,17 +35,17 @@ public class UserWSImpl implements IUserWS {
     }
 
     @Override
-    public List<UserDto> getUserByLogin(@WebParam(name = "userLogin") String login) {
-        return populateUserDto(userService.getUserByLogin(login));
+    public List<UserDto> getUserByEmail(@WebParam(name = "email") String email) {
+        return populateUserDto(userService.getUserByEmail(email));
     }
 
     @Override
-    public boolean isAuthorized(@WebParam(name = "userLogin") String login, @WebParam(name = "userPassword") String password) {
-        return userService.isAuthorized(login, password);
+    public boolean isAuthorized(@WebParam(name = "email") String email, @WebParam(name = "password") String password) {
+        return userService.isAuthorized(email, password);
     }
 
     @Override
-    public boolean delete(@WebParam(name = "userLogin") String login) {
-    	return userService.delete(login);
+    public boolean delete(@WebParam(name = "email") String email) {
+    	return userService.delete(email);
     }
 }

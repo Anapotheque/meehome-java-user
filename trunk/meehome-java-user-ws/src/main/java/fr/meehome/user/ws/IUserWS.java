@@ -12,10 +12,10 @@ public interface IUserWS {
 
     public List<UserDto> getAll();
 
-    public List<UserDto> getUserByLogin(@WebParam(name = "userLogin") String login);
+    public List<UserDto> getUserByEmail(@WebParam(name = "email") String email);
 
-    public boolean isAuthorized(@WebParam(name = "userLogin") String login, @WebParam(name = "userPassword") String password);
+    public boolean isAuthorized(@WebParam(name = "email") String login, @WebParam(name = "password") String password);
 
-    public boolean delete(@WebParam(name = "userLogin") String login);
+    public boolean delete(@WebParam(name = "email") String email);
 
 }

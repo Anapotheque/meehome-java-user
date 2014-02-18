@@ -27,7 +27,7 @@
 		                </goals>
 		                <phase>validate</phase>
 		                <configuration>
-		                    <url>http://localhost:8080/meehome-java-user-ws/services/user?wsdl</url>
+		                    <url>http://localhost:8080/meehome-java-user-ws/services/1.0/user?wsdl</url>
 		                    <outputDirectory>${basedir}/target/resources/wsdl</outputDirectory>
 		                    <outputFileName>userService.wsdl</outputFileName>
 		                </configuration>
