@@ -99,7 +99,7 @@ public class Launcher {
             System.out.println("- Aucun user");
         } else {
             for (UserDto userDto : listUserDto) {
-                System.out.println(userDto.getNom() + " - " + userDto.getPrenom() + " - " + userDto.getLogin());
+                System.out.println(userDto.getNom() + " - " + userDto.getPrenom() + " - " + userDto.getEmail());
             }
         }
     }
@@ -108,15 +108,15 @@ public class Launcher {
         System.out.println("---------------------------------");
         System.out.println("- Recherche users :              ");
         System.out.println("---------------------------------");
-        System.out.println("- Login : ");
-        String login = bufferedReader.readLine();
-        List<UserDto> listUserDto = userService.getUserByLogin(login);
+        System.out.println("- Email : ");
+        String email = bufferedReader.readLine();
+        List<UserDto> listUserDto = userService.getUserByEmail(email);
         System.out.println("---------------------------------");
         if (listUserDto.isEmpty()) {
             System.out.println("- Aucun user");
         } else {
             for (UserDto userDto : listUserDto) {
-                System.out.println(userDto.getNom() + " - " + userDto.getPrenom() + " - " + userDto.getLogin());
+                System.out.println(userDto.getNom() + " - " + userDto.getPrenom() + " - " + userDto.getEmail());
             }
         }
     }
@@ -147,8 +147,8 @@ public class Launcher {
         System.out.println("- Prenom : ");
         String prenom = bufferedReader.readLine();
 
-        System.out.println("- Login : ");
-        String login = bufferedReader.readLine();
+        System.out.println("- Email : ");
+        String email = bufferedReader.readLine();
 
         System.out.println("- Mot de passe : ");
         String password = bufferedReader.readLine();
@@ -156,7 +156,7 @@ public class Launcher {
         UserDto userDto = new UserDto();
         userDto.setNom(nom);
         userDto.setPrenom(prenom);
-        userDto.setLogin(login);
+        userDto.setEmail(email);
         userDto.setPassword(password);
 
         System.out.println("---------------------------------");

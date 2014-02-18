@@ -4,7 +4,7 @@ public class UserDto {
 
     private int id;
 
-    private String login;
+    private String email;
 
     private String password;
 
@@ -20,14 +20,6 @@ public class UserDto {
 
     public int getId() {
         return id;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getLogin() {
-        return login;
     }
 
     public void setPassword(String password) {
@@ -61,4 +53,12 @@ public class UserDto {
     public void setRoleEnumDto(RoleEnumDto roleEnumDto) {
         this.roleEnumDto = roleEnumDto;
     }
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 }
