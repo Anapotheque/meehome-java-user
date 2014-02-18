@@ -39,20 +39,20 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public List<UserDto> getUserByLogin(String login) {
-        return populateUserDto(userDao.findByLogin(login));
+    public List<UserDto> getUserByEmail(String email) {
+        return populateUserDto(userDao.findByEmail(email));
     }
 
     @Override
-    public boolean isAuthorized(String login, String password) {
-        List<UserDto> listUserDto = populateUserDto(userDao.findByLoginAndPwd(login, password));
+    public boolean isAuthorized(String email, String password) {
+        List<UserDto> listUserDto = populateUserDto(userDao.findByEmailAndPwd(email, password));
         return listUserDto != null && listUserDto.size() == 1 ? true : false;
     }
 
     @Override
-    public boolean delete(String login) {
+    public boolean delete(String email) {
         boolean result = false;
-        List<User> listUserFind = userDao.findByLogin(login);
+        List<User> listUserFind = userDao.findByEmail(email);
         if (listUserFind != null && !listUserFind.isEmpty()) {
             result = userDao.remove(listUserFind.get(0));
         }
