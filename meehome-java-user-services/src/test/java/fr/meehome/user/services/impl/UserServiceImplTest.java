@@ -27,23 +27,23 @@ public class UserServiceImplTest {
     private IUserDao userDaoMock;
 
     @SuppressWarnings("unused")
-	@Mock
+    @Mock
     private Mapper mapperMock;
 
     @Before
     public void setup() {
         when(userDaoMock.findAll()).thenReturn(populate_users_dao_mock());
-        when(userDaoMock.findByLoginAndPwd("test1", "pwd1")).thenReturn(populate_user_dao_mock());
-        when(userDaoMock.findByLogin("test1")).thenReturn(populate_user_dao_mock());
+        when(userDaoMock.findByEmailAndPwd("test1", "pwd1")).thenReturn(populate_user_dao_mock());
+        when(userDaoMock.findByEmail("test1")).thenReturn(populate_user_dao_mock());
     }
 
     private List<User> populate_users_dao_mock() {
         List<User> listUser = new ArrayList<User>();
         User user1 = new User();
-        user1.setLogin("test1");
+        user1.setEmail("test1");
         user1.setPassword("pwd1");
         User user2 = new User();
-        user2.setLogin("test2");
+        user2.setEmail("test2");
         user2.setPassword("pwd2");
         listUser.add(user1);
         listUser.add(user2);
@@ -53,7 +53,7 @@ public class UserServiceImplTest {
     private List<User> populate_user_dao_mock() {
         List<User> listUser = new ArrayList<User>();
         User user1 = new User();
-        user1.setLogin("test1");
+        user1.setEmail("test1");
         user1.setPassword("pwd1");
         listUser.add(user1);
         return listUser;
@@ -66,7 +66,7 @@ public class UserServiceImplTest {
 
     @Test
     public void should_return_one_users_by_login() {
-        assertEquals(1, userService.getUserByLogin("test1").size());
+        assertEquals(1, userService.getUserByEmail("test1").size());
     }
 
     @Test

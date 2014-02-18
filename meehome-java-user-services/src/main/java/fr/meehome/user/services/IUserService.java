@@ -8,9 +8,9 @@ public interface IUserService {
 
     public List<UserDto> getAll();
 
-    public List<UserDto> getUserByLogin(String login);
+    public List<UserDto> getUserByEmail(String email);
 
-    public boolean isAuthorized(String login, String password);
+    public boolean isAuthorized(String email, String password);
 
     public boolean delete(String login);
 
