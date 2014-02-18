@@ -1,4 +1,4 @@
-package fr.meehome.user.ws;
+package fr.meehome.user.ws.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import fr.meehome.user.services.IUserService;
+import fr.meehome.user.ws.IUserWS;
 import fr.meehome.user.ws.dto.UserDto;
 
 public class UserWSImpl implements IUserWS {
