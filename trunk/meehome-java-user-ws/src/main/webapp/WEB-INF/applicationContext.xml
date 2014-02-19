@@ -9,8 +9,8 @@
     http://cxf.apache.org/jaxws
     http://cxf.apache.org/schemas/jaxws.xsd">
 
-    <jaxws:server serviceClass="fr.meehome.user.ws.IUserWS" address="/1.0/user" serviceBean="#user" />
-    <bean id="user" class="fr.meehome.user.ws.UserWSImpl" />
+    <jaxws:server serviceClass="fr.meehome.user.ws.IUserWS" address="/user" serviceBean="#user" />
+    <bean id="user" class="fr.meehome.user.ws.impl.UserWSImpl" />
     
     <bean id="dozerBeanMapper" class="org.dozer.DozerBeanMapper" />
 
