@@ -1,0 +1,45 @@
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<!-- TEMPLATE -->
+    <definition name="templateGlobal" template="/WEB-INF/pages/template/templateGlobal.jsp">
+        <put-attribute name="meta" value="/WEB-INF/pages/template/meta.jsp" />
+        <put-attribute name="header" value="/WEB-INF/pages/template/header.jsp" />
+        <put-attribute name="navigation" value="/WEB-INF/pages/template/navigation.jsp" />
+        <put-attribute name="breadcrumbs" value="/WEB-INF/pages/template/breadcrumbs.jsp" />
+        <put-attribute name="aside" value="/WEB-INF/pages/template/aside.jsp" />
+        <put-attribute name="section" value="/WEB-INF/pages/template/section.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/pages/template/footer.jsp" />
+    </definition>
+
+	<!-- TEMPLATE -->
+    <definition name="templateModal" template="/WEB-INF/pages/template/templateModal.jsp">
+        <put-attribute name="meta" value="/WEB-INF/pages/template/meta.jsp" />
+        <put-attribute name="section" value="/WEB-INF/pages/template/section.jsp" />
+    </definition>
+
+	<!-- ACCUEIL -->
+    <definition name="accueil" extends="templateGlobal">
+        <put-attribute name="section" value="/WEB-INF/pages/accueil.jsp" />
+    </definition>
+    
+   	<!-- INSCRIPTION -->
+    <definition name="inscriptionUser" extends="templateGlobal">
+        <put-attribute name="section" value="/WEB-INF/pages/user/inscription.jsp" />
+    </definition>
+    
+    <!-- UPDATE USER -->
+    <definition name="updateUser" extends="templateGlobal">
+        <put-attribute name="section" value="/WEB-INF/pages/user/update.jsp" />
+    </definition>
+	
+    <!-- VALIDATION FORMULAIRE SUCCESS -->
+    <definition name="validationFormulaireSuccess" extends="templateModal">
+    	<put-attribute name="header" value="" />
+    	<put-attribute name="aside" value="" />
+        <put-attribute name="section" value="/WEB-INF/pages/validationFormulaireSuccess.jsp" />
+        <put-attribute name="footer" value="" />
+    </definition>
+    
+</tiles-definitions>

@@ -1,0 +1,56 @@
+/* line 1, ../sass/style/_structure.scss */
+.error {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* line 6, ../sass/style/_structure.scss */
+.clear {
+  clear: both;
+}
+
+/* line 10, ../sass/style/_structure.scss */
+.wrapper {
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 995px;
+  background-color: #FFFFFF;
+  overflow: auto;
+}
+
+/* line 20, ../sass/style/_structure.scss */
+section {
+  width: 765px;
+  float: left;
+  margin-left: 10px;
+}
+
+/* line 26, ../sass/style/_structure.scss */
+aside {
+  width: 200px;
+  float: left;
+}
+
+/* line 31, ../sass/style/_structure.scss */
+footer {
+  font-size: 10px;
+}
+
+/* line 1, ../sass/style/_overrideBootstrap.scss */
+body {
+  background-color: #555555;
+  color: #555555;
+/*   font-family: Verdana,Geneva,sans-serif; */
+}
+
+/* line 6, ../sass/style/_overrideBootstrap.scss */
+hr {
+  margin: 10px 0;
+}
+
+/* line 7, ../sass/style/_overrideBootstrap.scss */
+form {
+  margin: 0;
+}
