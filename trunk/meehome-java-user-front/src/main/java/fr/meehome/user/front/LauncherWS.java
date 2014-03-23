@@ -21,7 +21,7 @@ public class LauncherWS {
         List<UserDto> list = userService.getAll();
         if (list != null) {
             for (UserDto userDto : list) {
-                System.out.println(userDto.getNom() + " - " + userDto.getPrenom() + " - " + userDto.getLogin());
+                System.out.println(userDto.getNom() + " - " + userDto.getPrenom() + " - " + userDto.getEmail());
             }
         } else {
             System.out.println("liste vide");
