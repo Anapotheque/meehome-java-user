@@ -3,10 +3,11 @@
   <groupId>fr.meehome.user</groupId>
   <artifactId>meehome-java-user-dao</artifactId>
   <versioning>
-    <release>1.0</release>
+    <release>1.1</release>
     <versions>
       <version>1.0</version>
+      <version>1.1</version>
     </versions>
-    <lastUpdated>20131111174329</lastUpdated>
+    <lastUpdated>20140323215450</lastUpdated>
   </versioning>
 </metadata>
