@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import fr.meehome.user.webapp.model.Authentification;
 import fr.meehome.user.webapp.model.User;
+import fr.meehome.user.webapp.model.Validation;
 import fr.meehome.user.webapp.utils.Pages;
 
 @Controller
@@ -42,6 +44,17 @@ public class AccueilController extends MetaController {
     }
 
     /**
+     * On affiche la page d'authentification
+     * 
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "/authentification", method = RequestMethod.GET)
+    public String authentification(ModelMap model) {
+        return Pages.AUTHENTIFICATION_USER.getLibelle();
+    }
+
+    /**
      * On affiche la page de mise a jour user
      * 
      * @param model
@@ -60,11 +73,14 @@ public class AccueilController extends MetaController {
      * @return
      */
     @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
-    public String valideUpdate(@ModelAttribute("user") @Valid User user, BindingResult result) {
+    public String valideUpdate(@ModelAttribute("user")
+    @Valid
+    User user, BindingResult result, ModelMap model) {
         LOG.debug("valideUpdate User");
         if (result.hasErrors()) {
             return Pages.UPDATE_USER.getLibelle();
         }
+        model.addAttribute("validation", new Validation("Le formulaire a été validé avec success"));
         return Pages.VALIDATION_FORMULAIRE_SUCCESS.getLibelle();
     }
 
@@ -76,11 +92,35 @@ public class AccueilController extends MetaController {
      * @return
      */
     @RequestMapping(value = "/inscription", method = RequestMethod.POST)
-    public String valideInscription(@ModelAttribute("user") @Valid User user, BindingResult result) {
+    public String valideInscription(@ModelAttribute("user")
+    @Valid
+    User user, BindingResult result, ModelMap model) {
         LOG.debug("valideInscription User");
         if (result.hasErrors()) {
             return Pages.INSCRIPTION_USER.getLibelle();
         }
+        model.addAttribute("validation", new Validation("Le formulaire a été validé avec success"));
+        return Pages.VALIDATION_FORMULAIRE_SUCCESS.getLibelle();
+    }
+
+    /**
+     * Validation du formulaire d'authentification
+     * 
+     * @param user
+     * @param result
+     * @return
+     */
+    @RequestMapping(value = "/authentification", method = RequestMethod.POST)
+    public String valideAuthentification(@ModelAttribute("authentification")
+    @Valid
+    Authentification authentification, BindingResult result, ModelMap model) {
+        LOG.debug("valideAuthentification User");
+        if (result.hasErrors()) {
+            return Pages.AUTHENTIFICATION_USER.getLibelle();
+        }
+        model.addAttribute("validation", new Validation("Authentification",
+                        "Vous etes authorisé à vous connecté aux applications suivantes : .... en tant que : ....",
+                        "panel-default"));
         return Pages.VALIDATION_FORMULAIRE_SUCCESS.getLibelle();
     }
 
