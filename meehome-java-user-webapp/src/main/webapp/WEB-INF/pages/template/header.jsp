@@ -4,7 +4,7 @@
 <nav class="navbar navbar-default" role="navigation">
 	
 	<div class="navbar-header">
-		<a class="navbar-brand" href="<c:url value='/accueil/' />">Meehome User</a>
+		<a class="navbar-brand" href="<c:url value='/accueil/' />">Gesion des utilisateurs</a>
 	</div>
 	
 	<form:form method="POST" commandName="authentification" action="/connexion" class="navbar-form form-inline">

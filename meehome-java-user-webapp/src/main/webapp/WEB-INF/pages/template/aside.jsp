@@ -21,6 +21,7 @@
 			<c:otherwise>
 				<ul class="nav nav-pills nav-stacked">
 					<li class="active"><a href="<c:url value='/accueil/' />">Accueil</a></li>
+					<li><a href="<c:url value='/accueil/authentification' />" class="awesome">Authentification</a></li>
 					<li><a href="<c:url value='/accueil/inscription' />" class="awesome">Inscription</a></li>
 				</ul>
 			</c:otherwise>
