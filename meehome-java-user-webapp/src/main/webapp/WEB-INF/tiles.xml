@@ -33,12 +33,17 @@
     <definition name="updateUser" extends="templateGlobal">
         <put-attribute name="section" value="/WEB-INF/pages/user/update.jsp" />
     </definition>
+    
+    <!-- UPDATE USER -->
+    <definition name="authentificationUser" extends="templateGlobal">
+        <put-attribute name="section" value="/WEB-INF/pages/user/authentification.jsp" />
+    </definition>
 	
     <!-- VALIDATION FORMULAIRE SUCCESS -->
-    <definition name="validationFormulaireSuccess" extends="templateModal">
+    <definition name="validationFormulaire" extends="templateModal">
     	<put-attribute name="header" value="" />
     	<put-attribute name="aside" value="" />
-        <put-attribute name="section" value="/WEB-INF/pages/validationFormulaireSuccess.jsp" />
+        <put-attribute name="section" value="/WEB-INF/pages/validationFormulaire.jsp" />
         <put-attribute name="footer" value="" />
     </definition>
     
