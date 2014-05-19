@@ -3,10 +3,8 @@ package fr.meehome.user.webapp.utils;
 public enum Pages {
 
     // @formatter:off
-    ACCUEIL("accueil"), 
-    INSCRIPTION_USER("inscriptionUser"), 
-    UPDATE_USER("updateUser"), 
-    VALIDATION_FORMULAIRE_SUCCESS("validationFormulaireSuccess");
+    ACCUEIL("accueil"), INSCRIPTION_USER("inscriptionUser"), AUTHENTIFICATION_USER("authentificationUser"), UPDATE_USER(
+                    "updateUser"), VALIDATION_FORMULAIRE_SUCCESS("validationFormulaire");
     // @formatter:on
 
     private String libelle;
