@@ -1,0 +1,8 @@
+# Intellij
+meehome-java-user-dao/*.iml
+meehome-java-user-services/*.iml
+meehome-java-user-tools/*.iml
+meehome-java-user-webapp/*.iml
+meehome-java-user-ws/*.iml
+meehome-java-user-ws-client/*.iml
+*.iml
