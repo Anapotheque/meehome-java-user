@@ -26,74 +26,41 @@ public class Launcher {
     }
 
     public static void main(String[] args) {
-
         init();
-
         boolean run = true;
-
-        System.out.println("---------------------------------");
-        System.out.println("- Welcome                        ");
-        System.out.println("---------------------------------");
-
+        showHeader("Welcome");
         while (run) {
-            try {
-                switch (accueil()) {
-                    case 1:
-                        showAll();
-                        break;
-                    case 2:
-                        newUser();
-                        break;
-                    case 3:
-                        recherche();
-                        break;
-                    case 4:
-                        delete();
-                        break;
-                    case 5:
-                        run = false;
-                        break;
-                    default:
-                        try {
-                            accueil();
-                        } catch (NumberFormatException e) {
-                            e.printStackTrace();
-                            printError();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                            printError();
-                        }
-                        break;
-                }
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-                printError();
-            } catch (IOException e) {
-                e.printStackTrace();
-                printError();
+            switch (accueil()) {
+                case 1:
+                    showAll();break;
+                case 2:
+                    newUser();break;
+                case 3:
+                    recherche();break;
+                case 4:
+                    delete();break;
+                case 5:
+                    run = false;break;
+                default:
+                     accueil();break;
             }
         }
-
-        System.out.println("---------------------------------");
-        System.out.println("- Good bye                       ");
-        System.out.println("---------------------------------");
+        showHeader("Good bye");
     }
 
-    private static int accueil() throws NumberFormatException, IOException {
+    private static int accueil() {
         System.out.println("---------------------------------");
         System.out.println("1 - Liste des users");
         System.out.println("2 - Nouveau user");
-        System.out.println("3 - Recherche user par login");
-        System.out.println("4 - Suprression user par login");
+        System.out.println("3 - Recherche user par email");
+        System.out.println("4 - Suprression user par email");
         System.out.println("5 - Quitter");
         System.out.println("---------------------------------");
-        return Integer.parseInt(bufferedReader.readLine());
+        return Integer.parseInt(getString("Choix"));
     }
 
     private static void showAll() {
-        System.out.println("---------------------------------");
-        System.out.println("- Liste des users                ");
-        System.out.println("---------------------------------");
+        showHeader("Liste des users :");
         List<UserDto> listUserDto = userService.getAll();
         if (listUserDto.isEmpty()) {
             System.out.println("- Aucun user");
@@ -104,12 +71,9 @@ public class Launcher {
         }
     }
 
-    private static void recherche() throws IOException {
-        System.out.println("---------------------------------");
-        System.out.println("- Recherche users :              ");
-        System.out.println("---------------------------------");
-        System.out.println("- Email : ");
-        String email = bufferedReader.readLine();
+    private static void recherche() {
+        showHeader("Recherche users par email :");
+        String email = getString("Email");
         List<UserDto> listUserDto = userService.getUserByEmail(email);
         System.out.println("---------------------------------");
         if (listUserDto.isEmpty()) {
@@ -121,12 +85,9 @@ public class Launcher {
         }
     }
 
-    private static void delete() throws IOException {
-        System.out.println("---------------------------------");
-        System.out.println("- Suppression user par Login     ");
-        System.out.println("---------------------------------");
-        System.out.println("- Login : ");
-        String login = bufferedReader.readLine();
+    private static void delete() {
+        showHeader("Suppression user par Login");
+        String login = getString("Login");
 
         System.out.println("---------------------------------");
         System.out.print("- Suppression user ");
@@ -137,21 +98,12 @@ public class Launcher {
         }
     }
 
-    private static void newUser() throws NumberFormatException, IOException {
-        System.out.println("---------------------------------");
-        System.out.println("- Nouveau user                   ");
-        System.out.println("---------------------------------");
-        System.out.println("- Nom : ");
-        String nom = bufferedReader.readLine();
-
-        System.out.println("- Prenom : ");
-        String prenom = bufferedReader.readLine();
-
-        System.out.println("- Email : ");
-        String email = bufferedReader.readLine();
-
-        System.out.println("- Mot de passe : ");
-        String password = bufferedReader.readLine();
+    private static void newUser() throws NumberFormatException {
+        showHeader("Nouveau user");
+        String nom = getString("Nom");
+        String prenom = getString("Prenom");
+        String email = getString("Email");
+        String password = getString("Mot de passe");
 
         UserDto userDto = new UserDto();
         userDto.setNom(nom);
@@ -168,9 +120,25 @@ public class Launcher {
         }
     }
 
-    private static void printError() {
+    private static void printError(Exception e) {
+        showHeader("Erreur de lecture, veuillez reessayer");
+        System.out.println(e.getCause());
+        e.printStackTrace();
+    }
+
+    private static void showHeader(String title){
         System.out.println("---------------------------------");
-        System.out.println("Erreur de lecture, veuillez reessayer");
+        System.out.println("- " + title);
         System.out.println("---------------------------------");
+    }
+
+    private static String getString(String question){
+        try {
+            System.out.println("- " + question + ":");
+            return bufferedReader.readLine();
+        } catch (IOException e) {
+            printError(e);
+        }
+        return null;
     }
 }
