@@ -1,6 +1,10 @@
 # Intellij
-*.iml
+/meehome-java-user.iml
 .idea
+/meehome-java-user-dao/meehome-java-user-dao.iml
+/meehome-java-user-services/meehome-java-user-services.iml
+/meehome-java-user-webapp/meehome-java-user-webapp.iml
+/meehome-java-user-ws/meehome-java-user-ws.iml
 target/
 
 meehome-java-user-dao/target/
