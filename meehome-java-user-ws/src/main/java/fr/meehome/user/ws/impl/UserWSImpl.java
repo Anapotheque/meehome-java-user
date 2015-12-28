@@ -1,42 +1,32 @@
 package fr.meehome.user.ws.impl;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.jws.WebParam;
 
-import org.dozer.Mapper;
+import fr.meehome.user.ws.mapper.UserMapper;
+import fr.xebia.extras.selma.Selma;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 import fr.meehome.user.services.IUserService;
 import fr.meehome.user.ws.IUserWS;
-import fr.meehome.user.ws.dto.UserDto;
+import fr.meehome.user.ws.dto.User;
 
 public class UserWSImpl implements IUserWS {
 
 	@Autowired
 	private IUserService userService;
-	
-	@Autowired
-    @Qualifier("dozerBeanMapper")
-    private Mapper mapper;
 
-    private List<UserDto> populateUserDto(List<fr.meehome.user.services.dto.UserDto> listUserServiceDto) {
-        List<UserDto> listUserWsDto = new ArrayList<UserDto>();
-        for (fr.meehome.user.services.dto.UserDto userServiceDto : listUserServiceDto) {
-        	listUserWsDto.add(mapper.map(userServiceDto, UserDto.class));
-        }
-        return listUserWsDto;
-    }
-	
+    private UserMapper mapper = Selma.builder(UserMapper.class).build();
+
     @Override
-    public List<UserDto> getAll() {
+    public List<User> getAll() {
         return populateUserDto(userService.getAll());
     }
 
     @Override
-    public List<UserDto> getUserByEmail(@WebParam(name = "email") String email) {
+    public List<User> getUserByEmail(@WebParam(name = "email") String email) {
         return populateUserDto(userService.getUserByEmail(email));
     }
 
@@ -46,7 +36,11 @@ public class UserWSImpl implements IUserWS {
     }
 
     @Override
-    public boolean delete(@WebParam(name = "email") String email) {
-    	return userService.delete(email);
+    public boolean delete(@WebParam(name = "id") String id) {
+    	return userService.deleteById(id);
+    }
+
+    private List<User> populateUserDto(List<fr.meehome.user.services.dto.User> listUserServiceDto) {
+        return listUserServiceDto.stream().map(u -> mapper.asUser(u)).collect(Collectors.toList());
     }
 }

@@ -1,18 +1,17 @@
 package fr.meehome.user.services.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.dozer.Mapper;
+import fr.meehome.user.dao.IUserDao;
+import fr.meehome.user.services.IUserService;
+import fr.meehome.user.services.dto.User;
+import fr.meehome.user.services.mapper.UserMapper;
+import fr.xebia.extras.selma.Selma;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.meehome.user.dao.IUserDao;
-import fr.meehome.user.dao.domain.User;
-import fr.meehome.user.services.IUserService;
-import fr.meehome.user.services.dto.UserDto;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -21,51 +20,43 @@ public class UserServiceImpl implements IUserService {
     @Autowired
     private IUserDao userDao;
 
-    @Autowired
-    @Qualifier("dozerBeanMapper")
-    private Mapper mapper;
+    private UserMapper mapper = Selma.builder(UserMapper.class).build();
 
-    private List<UserDto> populateUserDto(List<User> listUser) {
-        List<UserDto> listUserDto = new ArrayList<UserDto>();
-        for (User user : listUser) {
-            listUserDto.add(mapper.map(user, UserDto.class));
-        }
-        return listUserDto;
+    @Override
+    public List<User> getAll() {
+        return asListUserDto(userDao.findAll());
     }
 
     @Override
-    public List<UserDto> getAll() {
-        return populateUserDto(userDao.findAll());
-    }
-
-    @Override
-    public List<UserDto> getUserByEmail(String email) {
-        return populateUserDto(userDao.findByEmail(email));
+    public List<User> getUserByEmail(String email) {
+        return asListUserDto(userDao.findByEmail(email));
     }
 
     @Override
     public boolean isAuthorized(String email, String password) {
-        List<UserDto> listUserDto = populateUserDto(userDao.findByEmailAndPwd(email, password));
-        return listUserDto != null && listUserDto.size() == 1 ? true : false;
+        return userDao.findByEmailAndPwd(email, password).stream().findFirst().isPresent();
     }
 
     @Override
-    public boolean delete(String email) {
-        boolean result = false;
-        List<User> listUserFind = userDao.findByEmail(email);
-        if (listUserFind != null && !listUserFind.isEmpty()) {
-            result = userDao.remove(listUserFind.get(0));
+    public boolean deleteById(String id) {
+        Optional<fr.meehome.user.dao.domain.User> user = userDao.findById(id).stream().findFirst();
+        if(user.isPresent()){
+            return userDao.remove(user.get());
         }
-        return result;
+        return false;
     }
 
     @Override
-    public boolean add(UserDto userDto) {
-        return userDao.save(mapper.map(userDto, User.class));
+    public boolean add(User user) {
+        return userDao.save(mapper.asUser(user));
     }
 
     @Override
-    public boolean update(UserDto userDto) {
-        return userDao.save(mapper.map(userDto, User.class));
+    public boolean update(User user) {
+        return userDao.save(mapper.asUser(user));
+    }
+
+    private List<User> asListUserDto(List<fr.meehome.user.dao.domain.User> listUser) {
+        return  listUser.stream().map(u -> mapper.asUserDto(u)).collect(Collectors.toList());
     }
 }

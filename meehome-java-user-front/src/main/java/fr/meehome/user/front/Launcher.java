@@ -9,7 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import fr.meehome.user.services.IUserService;
-import fr.meehome.user.services.dto.UserDto;
+import fr.meehome.user.services.dto.User;
 
 public class Launcher {
 
@@ -32,11 +32,11 @@ public class Launcher {
         while (run) {
             switch (accueil()) {
                 case 1:
-                    showAll();break;
+                    addUser();break;
                 case 2:
-                    newUser();break;
+                    show();break;
                 case 3:
-                    recherche();break;
+                    search();break;
                 case 4:
                     delete();break;
                 case 5:
@@ -45,96 +45,133 @@ public class Launcher {
                      accueil();break;
             }
         }
-        showHeader("Good bye");
     }
 
+    /**
+     *
+     * @return
+     */
     private static int accueil() {
-        System.out.println("---------------------------------");
-        System.out.println("1 - Liste des users");
-        System.out.println("2 - Nouveau user");
-        System.out.println("3 - Recherche user par email");
-        System.out.println("4 - Suprression user par email");
-        System.out.println("5 - Quitter");
-        System.out.println("---------------------------------");
-        return Integer.parseInt(getString("Choix"));
+        try {
+            print("---------------------------------");
+            print("1 - Nouveau user");
+            print("2 - Liste des users");
+            print("3 - Recherche user par email");
+            print("4 - Suprression user par identifiant");
+            print("5 - Quitter");
+            print("---------------------------------");
+            return Integer.parseInt(getString("Choix"));
+        } catch (Exception e){
+            print("Le format n'est pas bon, veuillez taper un chiffre.");
+            accueil();
+        }
+        return 0;
     }
 
-    private static void showAll() {
+    /**
+     *
+     */
+    private static void show() {
         showHeader("Liste des users :");
-        List<UserDto> listUserDto = userService.getAll();
-        if (listUserDto.isEmpty()) {
-            System.out.println("- Aucun user");
+        List<User> listUser = userService.getAll();
+        if (listUser.isEmpty()) {
+            print("- Aucun user");
         } else {
-            for (UserDto userDto : listUserDto) {
-                System.out.println(userDto.getNom() + " - " + userDto.getPrenom() + " - " + userDto.getEmail());
+            for (User user : listUser) {
+                print(user.getId() + " - " + user.getNom() + " - " + user.getPrenom() + " - " + user.getEmail());
             }
         }
     }
 
-    private static void recherche() {
+    /**
+     *
+     */
+    private static void search() {
         showHeader("Recherche users par email :");
         String email = getString("Email");
-        List<UserDto> listUserDto = userService.getUserByEmail(email);
-        System.out.println("---------------------------------");
-        if (listUserDto.isEmpty()) {
-            System.out.println("- Aucun user");
+        List<User> listUser = userService.getUserByEmail(email);
+        print("---------------------------------");
+        if (listUser.isEmpty()) {
+            print("- Aucun user");
         } else {
-            for (UserDto userDto : listUserDto) {
-                System.out.println(userDto.getNom() + " - " + userDto.getPrenom() + " - " + userDto.getEmail());
+            for (User user : listUser) {
+                print(user.getNom() + " - " + user.getPrenom() + " - " + user.getEmail());
             }
         }
     }
 
+    /**
+     *
+     */
     private static void delete() {
-        showHeader("Suppression user par Login");
-        String login = getString("Login");
-
-        System.out.println("---------------------------------");
+        showHeader("Supression user par identifiant");
+        String id = getString("identifiant");
+        print("---------------------------------");
         System.out.print("- Suppression user ");
-        if (userService.delete(login)) {
-            System.out.println("[OK]");
+        if (userService.deleteById(id)) {
+            print("[OK]");
         } else {
-            System.out.println("[ECHEC]");
+            print("[ECHEC]");
         }
     }
 
-    private static void newUser() throws NumberFormatException {
+    /**
+     *
+     * @throws NumberFormatException
+     */
+    private static void addUser() throws NumberFormatException {
         showHeader("Nouveau user");
-        String nom = getString("Nom");
-        String prenom = getString("Prenom");
-        String email = getString("Email");
-        String password = getString("Mot de passe");
-
-        UserDto userDto = new UserDto();
-        userDto.setNom(nom);
-        userDto.setPrenom(prenom);
-        userDto.setEmail(email);
-        userDto.setPassword(password);
-
-        System.out.println("---------------------------------");
+        User user = new User();
+        user.setNom(getString("Nom"));
+        user.setPrenom(getString("Prenom"));
+        user.setEmail(getString("Email"));
+        user.setPassword(getString("Mot de passe"));
+        print("---------------------------------");
         System.out.print("- Ajout user ");
-        if (userService.add(userDto)) {
-            System.out.println("[OK]");
+        if (userService.add(user)) {
+            print("[OK]");
         } else {
-            System.out.println("[ECHEC]");
+            print("[ECHEC]");
         }
     }
 
+    /**
+     *
+     * @param msg
+     */
+    private static void print(String msg) {
+        System.out.println(msg);
+    }
+
+    /**
+     *
+     * @param e
+     */
     private static void printError(Exception e) {
         showHeader("Erreur de lecture, veuillez reessayer");
-        System.out.println(e.getCause());
+        print(e.getMessage());
         e.printStackTrace();
     }
 
+    /**
+     *
+     * @param title
+     */
     private static void showHeader(String title){
-        System.out.println("---------------------------------");
-        System.out.println("- " + title);
-        System.out.println("---------------------------------");
+        print("---------------------------------");
+        print("- " + title);
+        print("---------------------------------");
+        print("");
     }
 
+    /**
+     *
+     * @param question
+     * @return
+     */
     private static String getString(String question){
         try {
-            System.out.println("- " + question + ":");
+            print("- " + question + ":");
             return bufferedReader.readLine();
         } catch (IOException e) {
             printError(e);

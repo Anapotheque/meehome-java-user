@@ -6,7 +6,6 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.dozer.Mapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,9 +24,6 @@ public class UserServiceImplTest {
 
     @Mock
     private IUserDao userDaoMock;
-
-    @Mock
-    private Mapper mapperMock;
 
     @Before
     public void setup() {

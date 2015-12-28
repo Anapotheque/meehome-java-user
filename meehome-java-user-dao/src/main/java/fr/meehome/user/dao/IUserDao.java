@@ -11,6 +11,8 @@ public interface IUserDao extends GenericDAO<User, Long> {
 
     public List<User> findByEmailAndPwd(String email, String password);
 
+    public List<User> findById(String id);
+
     public List<User> findByEmail(String email);
 
     public List<User> findByRole(RoleEnum roleEnum);

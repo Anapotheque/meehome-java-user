@@ -19,19 +19,25 @@ public class UserDao extends SessionFactoryDao<User, Long> implements IUserDao {
 
     @Override
     public List<User> findByEmailAndPwd(String email, String password) {
-        LOGGER.error("Recherche user par email et password : " + email + "- " + password);
+        LOGGER.debug("Recherche user par email et password : " + email + "- " + password);
         return search(new Search().addFilterEqual("email", email).addFilterEqual("password", password));
     }
 
     @Override
+    public List<User> findById(String id) {
+        LOGGER.debug("Recherche user par identifiant : " + id);
+        return search(new Search().addFilterEqual("id", id));
+    }
+
+    @Override
     public List<User> findByEmail(String email) {
-        LOGGER.error("Recherche user par email : " + email);
-        return search(new Search().addFilterEqual("email", email));
+        LOGGER.debug("Recherche user par email : " + email);
+        return search(new Search().addFilterLike("email", email));
     }
 
     @Override
     public List<User> findByRole(RoleEnum roleEnum) {
-        LOGGER.error("Recherche user par role : " + roleEnum.getLibelle());
+        LOGGER.debug("Recherche user par role : " + roleEnum.getLibelle());
         return search(new Search().addFilterEqual("roleEnum", roleEnum));
     }
 }

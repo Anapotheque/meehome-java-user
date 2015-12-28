@@ -2,19 +2,19 @@ package fr.meehome.user.services;
 
 import java.util.List;
 
-import fr.meehome.user.services.dto.UserDto;
+import fr.meehome.user.services.dto.User;
 
 public interface IUserService {
 
-    public List<UserDto> getAll();
+    public List<User> getAll();
 
-    public List<UserDto> getUserByEmail(String email);
+    public List<User> getUserByEmail(String email);
 
     public boolean isAuthorized(String email, String password);
 
-    public boolean delete(String login);
+    public boolean deleteById(String id);
 
-    public boolean add(UserDto userDto);
+    public boolean add(User user);
 
-    public boolean update(UserDto userDto);
+    public boolean update(User user);
 }
