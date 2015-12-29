@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import javax.jws.WebParam;
 
+import fr.meehome.user.services.dto.UserDto;
 import fr.meehome.user.ws.mapper.UserMapper;
 import fr.xebia.extras.selma.Selma;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,12 @@ public class UserWSImpl implements IUserWS {
 
     @Override
     public List<User> getAll() {
-        return populateUserDto(userService.getAll());
+        return asListUserDto(userService.getAll());
     }
 
     @Override
     public List<User> getUserByEmail(@WebParam(name = "email") String email) {
-        return populateUserDto(userService.getUserByEmail(email));
+        return asListUserDto(userService.getUserByEmail(email));
     }
 
     @Override
@@ -40,7 +41,7 @@ public class UserWSImpl implements IUserWS {
     	return userService.deleteById(id);
     }
 
-    private List<User> populateUserDto(List<fr.meehome.user.services.dto.User> listUserServiceDto) {
-        return listUserServiceDto.stream().map(u -> mapper.asUser(u)).collect(Collectors.toList());
+    private List<User> asListUserDto(List<UserDto> listUserDtoServiceDto) {
+        return listUserDtoServiceDto.stream().map(u -> mapper.asUser(u)).collect(Collectors.toList());
     }
 }

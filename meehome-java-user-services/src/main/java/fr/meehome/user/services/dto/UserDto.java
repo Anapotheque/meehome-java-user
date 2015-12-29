@@ -1,6 +1,6 @@
 package fr.meehome.user.services.dto;
 
-public class User {
+public class UserDto {
 
     private int id;
 
@@ -12,7 +12,7 @@ public class User {
 
     private String prenom;
 
-    private RoleEnum roleEnum;
+    private RoleEnumDto roleEnumDto;
 
     public void setId(int id) {
         this.id = id;
@@ -46,12 +46,12 @@ public class User {
         this.prenom = prenom;
     }
 
-    public RoleEnum getRoleEnum() {
-        return roleEnum;
+    public RoleEnumDto getRoleEnumDto() {
+        return roleEnumDto;
     }
 
-    public void setRoleEnum(RoleEnum roleEnum) {
-        this.roleEnum = roleEnum;
+    public void setRoleEnumDto(RoleEnumDto roleEnumDto) {
+        this.roleEnumDto = roleEnumDto;
     }
 
 	public String getEmail() {
@@ -61,4 +61,9 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

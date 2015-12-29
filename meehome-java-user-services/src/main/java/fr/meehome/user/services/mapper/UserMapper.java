@@ -1,13 +1,14 @@
 package fr.meehome.user.services.mapper;
 
-import fr.meehome.user.services.dto.User;
+import fr.meehome.user.dao.domain.User;
+import fr.meehome.user.services.dto.UserDto;
 import fr.xebia.extras.selma.Mapper;
 
 @Mapper
 public interface UserMapper {
 
-    User asUserDto(fr.meehome.user.dao.domain.User user);
+    UserDto asUserDto(User user);
 
-    fr.meehome.user.dao.domain.User asUser(User user);
+    User asUser(UserDto userDto);
 
 }

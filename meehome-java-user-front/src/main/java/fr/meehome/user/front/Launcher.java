@@ -5,11 +5,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 
+import fr.meehome.user.services.dto.UserDto;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import fr.meehome.user.services.IUserService;
-import fr.meehome.user.services.dto.User;
 
 public class Launcher {
 
@@ -23,12 +23,12 @@ public class Launcher {
         bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         applicationContext = new ClassPathXmlApplicationContext("fr/meehome/user/services/applicationContext.xml");
         userService = (IUserService ) applicationContext.getBean("userServiceImpl");
+        showHeader("Welcome");
     }
 
     public static void main(String[] args) {
         init();
         boolean run = true;
-        showHeader("Welcome");
         while (run) {
             switch (accueil()) {
                 case 1:
@@ -53,16 +53,16 @@ public class Launcher {
      */
     private static int accueil() {
         try {
-            print("---------------------------------");
-            print("1 - Nouveau user");
-            print("2 - Liste des users");
-            print("3 - Recherche user par email");
-            print("4 - Suprression user par identifiant");
+            printSeparator();
+            print("1 - Nouvel utilisateur");
+            print("2 - Liste des utilisateurs");
+            print("3 - Recherche utilisateur par email");
+            print("4 - Suprression utilisateur par identifiant");
             print("5 - Quitter");
-            print("---------------------------------");
+            printSeparator();
             return Integer.parseInt(getString("Choix"));
         } catch (Exception e){
-            print("Le format n'est pas bon, veuillez taper un chiffre.");
+            printError(e);
             accueil();
         }
         return 0;
@@ -72,31 +72,27 @@ public class Launcher {
      *
      */
     private static void show() {
-        showHeader("Liste des users :");
-        List<User> listUser = userService.getAll();
-        if (listUser.isEmpty()) {
-            print("- Aucun user");
-        } else {
-            for (User user : listUser) {
-                print(user.getId() + " - " + user.getNom() + " - " + user.getPrenom() + " - " + user.getEmail());
-            }
-        }
+        showHeader("Liste des utilisateurs :");
+        show(userService.getAll());
     }
 
     /**
      *
      */
     private static void search() {
-        showHeader("Recherche users par email :");
-        String email = getString("Email");
-        List<User> listUser = userService.getUserByEmail(email);
-        print("---------------------------------");
-        if (listUser.isEmpty()) {
-            print("- Aucun user");
+        showHeader("Recherche utilisateur par email :");
+        show(userService.getUserByEmail(getString("Email")));
+    }
+
+    /**
+     *
+     * @param listUserDto
+     */
+    private static void show(List<UserDto> listUserDto) {
+        if (listUserDto.isEmpty()) {
+            print("- Liste utilisateur vide");
         } else {
-            for (User user : listUser) {
-                print(user.getNom() + " - " + user.getPrenom() + " - " + user.getEmail());
-            }
+            listUserDto.stream().forEach(u -> print(u.toString()));
         }
     }
 
@@ -104,15 +100,8 @@ public class Launcher {
      *
      */
     private static void delete() {
-        showHeader("Supression user par identifiant");
-        String id = getString("identifiant");
-        print("---------------------------------");
-        System.out.print("- Suppression user ");
-        if (userService.deleteById(id)) {
-            print("[OK]");
-        } else {
-            print("[ECHEC]");
-        }
+        showHeader("Supression utilisateur par identifiant");
+        print(userService.deleteById(getString("identifiant")) ? "[OK]" : "[ECHEC]");
     }
 
     /**
@@ -120,27 +109,14 @@ public class Launcher {
      * @throws NumberFormatException
      */
     private static void addUser() throws NumberFormatException {
-        showHeader("Nouveau user");
-        User user = new User();
-        user.setNom(getString("Nom"));
-        user.setPrenom(getString("Prenom"));
-        user.setEmail(getString("Email"));
-        user.setPassword(getString("Mot de passe"));
-        print("---------------------------------");
-        System.out.print("- Ajout user ");
-        if (userService.add(user)) {
-            print("[OK]");
-        } else {
-            print("[ECHEC]");
-        }
-    }
-
-    /**
-     *
-     * @param msg
-     */
-    private static void print(String msg) {
-        System.out.println(msg);
+        showHeader("Nouvel utilisateur");
+        UserDto userDto = new UserDto();
+        userDto.setNom(getString("Nom"));
+        userDto.setPrenom(getString("Prenom"));
+        userDto.setEmail(getString("Email"));
+        userDto.setPassword(getString("Mot de passe"));
+        printSeparator();
+        print(userService.add(userDto) ? "[OK]" : "[ECHEC]");
     }
 
     /**
@@ -158,9 +134,9 @@ public class Launcher {
      * @param title
      */
     private static void showHeader(String title){
-        print("---------------------------------");
+        printSeparator();
         print("- " + title);
-        print("---------------------------------");
+        printSeparator();
         print("");
     }
 
@@ -178,4 +154,20 @@ public class Launcher {
         }
         return null;
     }
+
+    /**
+     *
+     * @param msg
+     */
+    private static void print(String msg) {
+        System.out.println(msg);
+    }
+
+    /**
+     *
+     */
+    private static void printSeparator() {
+        print("---------------------------------");
+    }
+
 }

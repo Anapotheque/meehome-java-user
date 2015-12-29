@@ -2,7 +2,7 @@ package fr.meehome.user.services.impl;
 
 import fr.meehome.user.dao.IUserDao;
 import fr.meehome.user.services.IUserService;
-import fr.meehome.user.services.dto.User;
+import fr.meehome.user.services.dto.UserDto;
 import fr.meehome.user.services.mapper.UserMapper;
 import fr.xebia.extras.selma.Selma;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +23,12 @@ public class UserServiceImpl implements IUserService {
     private UserMapper mapper = Selma.builder(UserMapper.class).build();
 
     @Override
-    public List<User> getAll() {
+    public List<UserDto> getAll() {
         return asListUserDto(userDao.findAll());
     }
 
     @Override
-    public List<User> getUserByEmail(String email) {
+    public List<UserDto> getUserByEmail(String email) {
         return asListUserDto(userDao.findByEmail(email));
     }
 
@@ -47,16 +47,16 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public boolean add(User user) {
-        return userDao.save(mapper.asUser(user));
+    public boolean add(UserDto userDto) {
+        return userDao.save(mapper.asUser(userDto));
     }
 
     @Override
-    public boolean update(User user) {
-        return userDao.save(mapper.asUser(user));
+    public boolean update(UserDto userDto) {
+        return userDao.save(mapper.asUser(userDto));
     }
 
-    private List<User> asListUserDto(List<fr.meehome.user.dao.domain.User> listUser) {
+    private List<UserDto> asListUserDto(List<fr.meehome.user.dao.domain.User> listUser) {
         return  listUser.stream().map(u -> mapper.asUserDto(u)).collect(Collectors.toList());
     }
 }

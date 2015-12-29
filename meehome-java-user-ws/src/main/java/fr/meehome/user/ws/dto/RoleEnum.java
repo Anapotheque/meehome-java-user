@@ -1,6 +1,7 @@
 package fr.meehome.user.ws.dto;
 
 public enum RoleEnum {
+
     ADMINISTRATEUR(1, "adminsitrateur"), VISITEUR(2, "visiteur");
 
     private int code;

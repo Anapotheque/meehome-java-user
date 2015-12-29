@@ -1,13 +1,14 @@
 package fr.meehome.user.services.dto;
 
-public enum RoleEnum {
+public enum RoleEnumDto {
+
     ADMINISTRATEUR(1, "adminsitrateur"), VISITEUR(2, "visiteur");
 
     private int code;
 
     private String value;
 
-    private RoleEnum(int code, String value) {
+    private RoleEnumDto(int code, String value) {
         this.code = code;
         this.value = value;
     }
